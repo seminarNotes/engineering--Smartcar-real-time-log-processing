@@ -1,3 +1,65 @@
+Configured Capacity: 50186701210 (46.74 GB)
+Present Capacity: 26371350528 (24.56 GB)
+DFS Remaining: 26134228992 (24.34 GB)
+DFS Used: 237121536 (226.14 MB)
+DFS Used%: 0.90%
+Replicated Blocks:
+        Under replicated blocks: 0
+        Blocks with corrupt replicas: 0
+        Missing blocks: 0
+        Missing blocks (with replication factor 1): 0
+        Low redundancy blocks with highest priority to recover: 0
+        Pending deletion blocks: 0
+Erasure Coded Block Groups:
+        Low redundancy block groups: 0
+        Block groups with corrupt internal blocks: 0
+        Missing block groups: 0
+        Low redundancy blocks with highest priority to recover: 0
+        Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (2):
+
+Name: 192.168.56.101:9866 (server01.hadoop.com)
+Hostname: server01.hadoop.com
+Rack: /default
+Decommission Status : Normal
+Configured Capacity: 25093350605 (23.37 GB)
+DFS Used: 53248 (52 KB)
+Non DFS Used: 13218301133 (12.31 GB)
+DFS Remaining: 11590402048 (10.79 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 46.19%
+Configured Cache Capacity: 363855872 (347 MB)
+Cache Used: 0 (0 B)
+Cache Remaining: 363855872 (347 MB)
+Cache Used%: 0.00%
+Cache Remaining%: 100.00%
+Xceivers: 2
+Last contact: Tue Jan 23 15:56:57 KST 2024
+Last Block Report: Tue Jan 23 15:48:03 KST 2024
+
+
+Name: 192.168.56.102:9866 (server02.hadoop.com)
+Hostname: server02.hadoop.com
+Rack: /default
+Decommission Status : Normal
+Configured Capacity: 25093350605 (23.37 GB)
+DFS Used: 237068288 (226.09 MB)
+Non DFS Used: 10027861197 (9.34 GB)
+DFS Remaining: 14543826944 (13.54 GB)
+DFS Used%: 0.94%
+DFS Remaining%: 57.96%
+Configured Cache Capacity: 363855872 (347 MB)
+Cache Used: 0 (0 B)
+Cache Remaining: 363855872 (347 MB)
+Cache Used%: 0.00%
+Cache Remaining%: 100.00%
+Xceivers: 2
+Last contact: Tue Jan 23 15:56:59 KST 2024
+Last Block Report: Tue Jan 23 11:18:05 KST 2024
+
+
 # Hadoop Ecosystem
 최초 작성일 : 2024-01-23  
 마지막 수정일 : 2024-01-23
