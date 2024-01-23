@@ -1,3 +1,44 @@
+Connecting to namenode via http://server01.hadoop.com:9870/fsck?ugi=root&path=%2F
+FSCK started by root (auth:SIMPLE) from /192.168.56.102 for path / at Tue Jan 23 15:49:09 KST 2024
+
+Status: HEALTHY
+ Number of data-nodes:  2
+ Number of racks:               1
+ Total dirs:                    15
+ Total symlinks:                0
+
+Replicated Blocks:
+ Total size:    235169738 B
+ Total files:   2
+ Total blocks (validated):      3 (avg. block size 78389912 B)
+ Minimally replicated blocks:   3 (100.0 %)
+ Over-replicated blocks:        0 (0.0 %)
+ Under-replicated blocks:       0 (0.0 %)
+ Mis-replicated blocks:         0 (0.0 %)
+ Default replication factor:    1
+ Average block replication:     1.0
+ Missing blocks:                0
+ Corrupt blocks:                0
+ Missing replicas:              0 (0.0 %)
+ Blocks queued for replication: 0
+
+Erasure Coded Block Groups:
+ Total size:    0 B
+ Total files:   0
+ Total block groups (validated):        0
+ Minimally erasure-coded block groups:  0
+ Over-erasure-coded block groups:       0
+ Under-erasure-coded block groups:      0
+ Unsatisfactory placement block groups: 0
+ Average block group size:      0.0
+ Missing block groups:          0
+ Corrupt block groups:          0
+ Missing internal blocks:       0
+ Blocks queued for replication: 0
+FSCK ended at Tue Jan 23 15:49:09 KST 2024 in 2 milliseconds
+
+  
+  
   # Hadoop Ecosystem
 최초 작성일 : 2024-01-23  
 마지막 수정일 : 2024-01-23
