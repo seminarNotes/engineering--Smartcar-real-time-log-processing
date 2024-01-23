@@ -104,7 +104,7 @@ $ hdfs fsck /
 
 ```
 Connecting to namenode via http://server01.hadoop.com:9870/fsck?ugi=root&path=%2F
-FSCK started by root (auth:SIMPLE) from /192.168.56.102 for path / at Tue Jan 23 15:49:09 KST 2024
+FSCK started by root (auth:SIMPLE) from /000.000.000.000 for path / at Tue Jan 23 15:49:09 KST 2024
 
 Status: HEALTHY
  Number of data-nodes:  2
