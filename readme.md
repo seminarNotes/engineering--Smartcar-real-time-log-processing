@@ -41,7 +41,7 @@
 ## Table of Contents
 
 1. [Hadoop Distributed File System](#1.-Hadoop-Distributed-File-System)
-
+2. [ZooKeeper](#2.-ZooKeeper)
 
 ## 1. Hadoop Distributed File System  
 
@@ -53,66 +53,221 @@ Hadoop Distributed File System (HDFS)는 아파치 하둡(Hadoop) 프레임워�
 |--|--|
 |hdfs|Hadoop Distributed File System에 접근하기 위한 Hadoop 명령어|
 |dfs|Distributed File System의 약어로, Hadoop의 분산 파일 시스템|
-|fsck|file system check의 약어로, 파일 시스템 체크를 수행하는 옵션|
+|fsck|File System Check의 약어로, 파일 시스템 체크를 수행하는 옵션|
 
 이 외 사용되는 명령어는 UNIX 또는 LINUX 명령어와 유사하다.
 
 ### 1-1. HDFS에 파일 저장
-먼저 Server02에 SSH 접속을 하고, 업로드한 샘플 파일이 있는 위치로 이동해서 HDFS의 put 명령을 실행한다.
+HDFS를 사용하기 위해서, Putty를 이용하여 Server02에 SSH 접속을 하고, FileZilla에 의해 업로드된 샘플 파일(Sample.txt)이 있는 위치로 이동해야 한다.
+
+```
+cd /home/bigdata
+```
+이 후, Linux(Local)에 있는 Sample.txt 파일을 HDFS에서 파일을 관리할 수 있도록 put 명령을 이용하여, 파일을 업로드한다.
+
+```
+$ hdfs dfs -put Sample.txt /tmp
+```
+
+### 1-2. HDFS에 저장한 파일 확인
+/tmp 경로에 있는 파일 및 디렉토리 목록을 나열함으로써, 파일(Sample.txt)이 정상적으로 업로드 되었는지 확인한다.
+```
+$ hdfs dfs -ls /tmp
+```
+
+### 1-3. HDFS에 저장한 파일 내용 보기
+LINUX 명령어와 유사하게 -cat 명령어는 파일의 내용을 표시하거나 출력하는 명령어이다.
+```
+$ hdfs dfs -cat /tmp/Sample.txt
+```
+
+### 1-4. HDFS에 저장한 파일 상태 확인
+```
+$ hdfs dfs -stat '%b %o %u %n' /tmp/Sample.txt
+```
+
+파일크기(%b), 파일 블록 크기(%o), 복제 수(%r), 소유자명(%u), 파일명(%n) 정보를 출력한다.
+
+### 1-5. HDFS에 저장한 파일의 이름 바꾸기
+```
+$ hdfs dfs -mv /tmp/Sample.txt /tmp/Sample2.txt
+```
+
+### 1-6. HDFS의 파일 시스템 상태 검사
+HDFS의 파일 블록 및 데이터 무결성을 검사하는 데 사용된다. 파일 시스템 내의 각 파일 블록에 대한 정보를 표시하고, 전체 크기, 디렉터리 수, 파일 수, 블록의 복제 상태, 블록 크기, 블록 위치 등과 같은 세부 정보를 출력한다.
+ 
+
+```
+$ hdfs fsck /
+```
+특히, 아래에서 확인해야할 부분은 STATUS가 HEALTHY인지 MIS,나 Corrupt된 블록이 있는지를 중점적으로 출력값을 확인한다.
+
+```
+Connecting to namenode via http://server01.hadoop.com:9870/fsck?ugi=root&path=%2F
+FSCK started by root (auth:SIMPLE) from /192.168.56.102 for path / at Tue Jan 23 15:49:09 KST 2024
+
+Status: HEALTHY
+ Number of data-nodes:  2
+ Number of racks:               1
+ Total dirs:                    15
+ Total symlinks:                0
+
+Replicated Blocks:
+ Total size:    235169738 B
+ Total files:   2
+ Total blocks (validated):      3 (avg. block size 78389912 B)
+ Minimally replicated blocks:   3 (100.0 %)
+ Over-replicated blocks:        0 (0.0 %)
+ Under-replicated blocks:       0 (0.0 %)
+ Mis-replicated blocks:         0 (0.0 %)
+ Default replication factor:    1
+ Average block replication:     1.0
+ Missing blocks:                0
+ Corrupt blocks:                0
+ Missing replicas:              0 (0.0 %)
+ Blocks queued for replication: 0
+
+Erasure Coded Block Groups:
+ Total size:    0 B
+ Total files:   0
+ Total block groups (validated):        0
+ Minimally erasure-coded block groups:  0
+ Over-erasure-coded block groups:       0
+ Under-erasure-coded block groups:      0
+ Unsatisfactory placement block groups: 0
+ Average block group size:      0.0
+ Missing block groups:          0
+ Corrupt block groups:          0
+ Missing internal blocks:       0
+ Blocks queued for replication: 0
+FSCK ended at Tue Jan 23 15:49:09 KST 2024 in 2 milliseconds
+```
+
+명령어는 HDFS 클러스터의 전반적인 상태 및 데이터 노드와 관련된 정보를 출력한다. 아래 명령어를 사용하면, 데이터 노드의 수, 용량, 사용 가능한 용량, 블록의 수 등과 같은 클러스터 전반적인 상태 정보를 확인할 수 있다. 주로 클러스터의 리소스 사용 및 가용성을 모니터링하고, 클러스터 상태를 확인하는 데 사용된다.
+```
+$ hdfs dfsadmin -report
+```
+```
+Configured Capacity: 50186701210 (46.74 GB)
+Present Capacity: 26371350528 (24.56 GB)
+DFS Remaining: 26134228992 (24.34 GB)
+DFS Used: 237121536 (226.14 MB)
+DFS Used%: 0.90%
+Replicated Blocks:
+        Under replicated blocks: 0
+        Blocks with corrupt replicas: 0
+        Missing blocks: 0
+        Missing blocks (with replication factor 1): 0
+        Low redundancy blocks with highest priority to recover: 0
+        Pending deletion blocks: 0
+Erasure Coded Block Groups:
+        Low redundancy block groups: 0
+        Block groups with corrupt internal blocks: 0
+        Missing block groups: 0
+        Low redundancy blocks with highest priority to recover: 0
+        Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (2):
+
+Name: 000.000.000.000:0000 (server01.hadoop.com)
+Hostname: server01.hadoop.com
+Rack: /default
+Decommission Status : Normal
+Configured Capacity: 25093350605 (23.37 GB)
+DFS Used: 53248 (52 KB)
+Non DFS Used: 13218301133 (12.31 GB)
+DFS Remaining: 11590402048 (10.79 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 46.19%
+Configured Cache Capacity: 363855872 (347 MB)
+Cache Used: 0 (0 B)
+Cache Remaining: 363855872 (347 MB)
+Cache Used%: 0.00%
+Cache Remaining%: 100.00%
+Xceivers: 2
+Last contact: Tue Jan 23 15:56:57 KST 2024
+Last Block Report: Tue Jan 23 15:48:03 KST 2024
+
+
+Name: 000.000.000.000:0000 (server02.hadoop.com)
+Hostname: server02.hadoop.com
+Rack: /default
+Decommission Status : Normal
+Configured Capacity: 25093350605 (23.37 GB)
+DFS Used: 237068288 (226.09 MB)
+Non DFS Used: 10027861197 (9.34 GB)
+DFS Remaining: 14543826944 (13.54 GB)
+DFS Used%: 0.94%
+DFS Remaining%: 57.96%
+Configured Cache Capacity: 363855872 (347 MB)
+Cache Used: 0 (0 B)
+Cache Remaining: 363855872 (347 MB)
+Cache Used%: 0.00%
+Cache Remaining%: 100.00%
+Xceivers: 2
+Last contact: Tue Jan 23 15:56:59 KST 2024
+Last Block Report: Tue Jan 23 11:18:05 KST 2024
+```
+
+
+###  1-7. HDFS에 저장된 파일을 로컬 파일 시스템으로 가져오기
+-put 명령어는 로컬에 있는 파일을 HDFS에 업로드 하였다면, 반대로 HDFS에 업로드된 파일을 로컬로 다운로드하는 작업도 -get 명령어를 통해 실행할 수 있다.
+```
+$ hdfs dfs -get /tmp/Sample2.txt
+```
+
+###  1-8. HDFS의 저장한 파일 삭제(휴지통)
+```
+$ hdfs dfs -rm /tmp/Sample2.txt
+```
+전환되었다면, 강제 안전 모드를 해제함으로써, "Safe Mode"를 빠져나와야 한다. -->
+삭제 명령을 실행하면 먼저 파일은 휴지통으로 임시 삭제되며, 복구가 가능하다. 그러나 휴지통으로 임시 삭제된 파일은 특정 시간이 지나면 자동으로 완전히 삭제된다. 휴지통에 임시 삭제가 필요 없을 때는 -skipTrash 옵션을 사용하여 완전 삭제를 할 수 있다.
+
+HDFS 파일이 비정상적인 상태로 식별되는 경우, CORRUPT CLOCK, MISSING BLOCK, MISSING SIZE, CORRUPT BLOCKS 등의 항목과 함께 숫자가 표시된다. 이러한 상황이 지속되면 하둡과 연결된 HBase, Hive 등 다른 서비스에서 문제가 발생할 수 있기 때문에 비정상적인 파일 블록이 식별된 경우, 사용자는 다른 노드로 복구를 시도하거나 이슈를 해결하기 위해 강제 삭제 또는 이동 명령을 사용해야 한다.
+
+Safe Mode는 HDFS에서 데이터의 안정성을 유지하고 클러스터의 상태를 관리하기 위한 모드이다. 일반적으로 클러스터의 유지 보수 또는 복구 작업 중에 활성화된다. 안전 모드로 전환된 경우, "Safe Mode"를 빠져나오기 위해 강제 안전 모드 해제를 실행해야 한다.
+
+```
+$ hdfs dfsamin -safemode leave
+```
+
+하둡은 파일 저장 시 Replication 기술을 사용하여 데이터의 안정성을 확보한다. Replication은 주 파일(main file)과 백업 파일(sub file) 간의 복제 및 교체 과정을 의미하며, 파일을 저장할 때 Server01과 Server02에 동시에 파일을 저장하는 방식을 채택하여, 한쪽 서버의 파일이 손상될 경우 나머지 한쪽 서버에서 파일을 복제하여 손상된 파일(MISSING BLOCK, CORRUPT CLOCK)을 대체한다. 그러나 양쪽 서버에 동일한 파일이 손상될 경우, 복제 및 복구 작업이 불가능하므로 이 경우 사용자가 아래와 같은 명령어를 이용하여 파일을 수동으로 삭제해야 한다.
+
+```
+$ hdfs fsck / -delete
+```
+
+위 명령어는 root 디렉토리에 존재하는 파일 중 손상된 파일을 모두 삭제하는 명령어이다. 그러나 손상된 파일 중에는 시스템에서 복구 작업이 진행 중인 파일도 있을 수 있기 때문에 손상된 파일을 /lost + found 디렉터리로 이동시키는 명령어를 사용하여 파일 및 블록을 안전하게 보존해야 한다. 
+
+```
+$ hdfs fsck / -move
+```
+
+
+## 2. ZooKeeper
+Apache ZooKeeper는 분산 시스템의 조율 및 동기화를 위한 오픈 소스 분산 코디네이션 서비스입니다. 주로 분산 환경에서의 데이터 관리, 동기화, 공유 및 분산 시스템 관리를 위해 사용된다.
+
+ZooKeeper를 실행하여, 간단한 작업을 수행해보자.
 
 PuTTy 프로그램 실행
 Server02에 root 계정으로 SSH 접속
-$ cd /home/bigdata
-$ hdfs dfs -put Sample.txt /tmp
 
-위 명령어를 통해 Sample.txt 파일이 HDFS의 /tmp 디렉터리에 저장
+Server02에 root 계정으로 로그인한 후 다음 명령어를 실행한다.
 
+1. zookeeper-client 실행
+$ zookeeper-client
+를 실행하게 되면, 설치된 주키퍼에 의해 주피커 shell 화면으로 전환된다.
 
-2. HDFS에 저장한 파일 확인
-$ hdfs dfs -ls /tmp
-앞서 /tmp 디렉터리에 저장한 "Sample.txt" 파일의 목록을 저장
+2. zookeer Z노드 등록/조회/삭제
+전환된 shell 화면에서 아래 명령어를 통해 pilot-pjt 노드를 생성/조회/출력/삭제를 차례대로 실행할 수 있다. 
 
-3. HDFS에 저장한 파일 내용 보기
-$ hdfs dfs -cat /tmp/Sample.txt
-
-4. HDFS에 저장한 파일 상태 확인
-$ hdfs dfs -stat '%b %o %u %n' /tmp/Sample.txt
-파일크기(%b), 파일 블록 크기(%o), 복제 수(%r), 소유자명(%u), 파일명(%n) 정보를 출력한다.
-
-5. HDFS에 저장한 파일의 이름 바꾸기
-$ hdfs dfs -mv /tmp/Sample.txt /tmp/Sample2.txt
-
-6. HDFS의 파일 시스템 상태 검사
-$ hdfs fsck /
-전체 크기, 디렉터리 수, 파일 수, 노드 수 등 파일 시스템의 전체 상태를 출력한다
-
-$ hdfs dfsadmin -report
-하둡 파일시스템의 기본 정보 및 통계를 출력한다
-
-7. HDFS에 저장된 파일을 로컬 파일 시스템으로 가져오기
-$ hdfs dfs -get /tmp/Sample2.txt
-
-8. HDFS의 저장한 파일 삭제(휴지통)
-$ hdfs dfs -rm /tmp/Sample2.txt
-
-삭제 명령을 실해앟면 우선 휴지통으로 임시 삭제되며, 복구가 가능하다.
-휴지통으로 임시 삭제된 파일을 특정 시간이 지나면 자동으로 완전 삭제가 된다.
-휴지통에 임시 삭제가 불필요할 때는 -skipTrash 옵션을 사용한다.
-
-추가적으로 HDFS 파일의 비정상적인 상태 식별되는 경우, CORRUPT CLOCK, MISSING BLOCK, MISSING SIZE, CORRUPT BLOCKS 등의 항목에 숫자가 표기된다. 이와 같은 상황이 지속되면 하둡과 연결된 HBase, Hive에 이슈가 발생할 수 있다. 비정상적인 파일 블록이 식별된 경우, 다른 노드에 복구하려고 시도하여, 다음과 같이 사용자가 강제 삭제/이동 명령을 하여 이슈 사항을 조치할 수 있다.
-
-Safe Mode는 HDFS에서 데이터의 안정성을 유지하고 클러스터의 상태를 관리하기 위한 모드로, 일반적으로 클러스터의 유지 보수 또는 복구 작업 중에 활성화된다. 안전 모드 상태로 전환되었다면, 강제 안전 모드를 해제함으로써, "Safe Mode"를 빠져나와야 한다.
-
-$ hdfs dfsamin -safemode leave
-
-손상된 파일(MISSING BLOCK, CORRUPT CLOCK)에 대비해 하둡은 Replication 기술을 존재한다. Replication은 주 파일(main file)과 서브 파일(sub file) 사이의 복제 및 교체 프로세스를 의미한다. 하둡은 파일 저장 시, Server01과 Server02에 각각 파일을 저장하여, 한쪽 서버의 파일을 손상 될 경우, 나머지 한쪽 서버에서 파일 복제하여, 손상된 파일 대체하는 시스템이 존재한다. 하지만, 양쪽 서버의 동일한 파일이 손상될 경우, 복제/복구 작업이 불가능하기 때문에 이 경우, 사용자에 의해 파일을 강제 삭제를 해야한다.
-
-$ hdfs fsck / -delete
-
-위 명령어는 root 디렉토리에 존재하는 파일 중, 손상된 파일 모두 삭제하는 명령어이다. 하지만, 손상된 파일 중, 시스템에 의해 복구가 진행 중인 파일도 존재하기 때문에 손상된 파일을 /lost + found 디렉터리로 옮기는 명령어를 사용하는데 
-
-$ hdfs fsck / -move
-
-위 명령어는 손상된 파일/블록을 옮기는데 사용이 된다.
+[zk: localhost:2181(CONNECTED) 0]: create \pilot-pjt bigdata
+[zk: localhost:2181(CONNECTED) 0]: ls \
+[zk: localhost:2181(CONNECTED) 0]: get \pilot-pjt
+[zk: localhost:2181(CONNECTED) 0]: delete \pilot-pjt
 
 
+
+
+zookeeper-client 실행
