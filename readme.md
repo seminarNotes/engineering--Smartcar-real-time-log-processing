@@ -1,8 +1,9 @@
-# Hadoop
+# Hadoop Ecosystem
 최초 작성일 : 2024-01-23  
 마지막 수정일 : 2024-01-23
   
 ## 0. Overview
+하둡 에코 시스템(Hadoop Ecosystem)은 대규모 데이터를 저장, 처리 및 분석하기 위한 Apache Hadoop 프레임워크의 여러 컴포넌트 및 관련 기술들의 모음을 의미한다. 이 에코 시스템은 다양한 작업을 수행하고 다양한 비즈니스 및 데이터 분석 요구 사항을 해결하기 위해 다양한 툴과 기술로 구성되어 있다. 이 글에서는 하둡 에코시스템을 구성하는 프레임워크의 설명과 간단한 사용 예제에 대해 알아본다.
 
 <img src="./images/logo_hadoop.png" width="360" height="120" alt="Textbook">
 
