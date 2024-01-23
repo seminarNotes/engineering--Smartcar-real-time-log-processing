@@ -3,9 +3,9 @@
 마지막 수정일 : 2024-01-23
   
 ## 0. Overview
-<!--
-<img src="./images/textbook.png" width="450" height="500" alt="Textbook">
--->
+
+<img src="./images/logo_hadoop.png" width="360" height="120" alt="Textbook">
+
 
 하둡(Hadoop)은 대규모 데이터 집합을 분산하여 처리하고 저장할 수 있는 오픈 소스 분산 컴퓨팅 프레임워크이다. 아파치 소프트웨어 재단에서 개발하고 관리하며, 빅데이터 처리와 저장을 위한 핵심 도구 중 하나이며, 하둡은 크게 두 가지 핵심 구성 요소로 구성되어 있습니다.
 
