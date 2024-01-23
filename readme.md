@@ -20,7 +20,7 @@
 
 아래에서 설명하는 server01과 server02는 직접 linux 서버를 구성한 것을 기준으로 설명한 것으로, 각 프레임워크는 cloudera를 통해 구축하였으며, host의 구성은 아래와 같다.  
 
-![host](./images/host.png)
+![host](./images/allhost.png)
 
 ## Table of Contents
 
