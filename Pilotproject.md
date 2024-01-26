@@ -18,6 +18,10 @@
 |수집 도중 장애가 발생해도 데이터를 안전하게 보관 및 재처리|플럼의 메모리 중 Channel 및 카프카 Broker 활용으로 로컬 디스크의 파일시스템에 수집 데이터 임시 저장|
 |스마트카의 실시간 로그 파일은 비동기 처리로 빠른 수집 처리|플럼에서 수집한 데이터를 카프카 Sink 컴포넌트를 이용해 카프카 Topic에 비동기 전송|
 
+
+
+
+#### 1. Agent 생성하기
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
 먼저, Agent 이름을 설정해야 하는데, 구성 파일 내 객체를 구분하는 이름이기 때문에 구성 파일(.conf)와 동일하게 한다면, Agent 이름은 큰 제약은 없다. 여기 Agent를 SeminarNotes_Agent라고 가정하고, 구성 파일을 작성해보겠다. 구성 파일은 Agent가 어떤 파일과 데이터를 읽어, 어떤 동작을 하는지 명세하는 파일이며, 각 구성 정보는 다음과 같은 의미를 갖는다.
 
@@ -56,7 +60,55 @@ SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 
 
 
+#### 2. Agent에 Interceptor 추가하기
+앞에서 정의한 Agent의 구성 파일은 아래와 같다. 
+``` conf
+SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
+SeminarNotes_Agent.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink
 
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
+
+# [Interceptor 정보 추가]
+
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
+```
+
+sources에서 수집된 데이터를 channels로 옮기기 전에 데이터를 가로채(intercept)서, 데이터 전처리를 수행해야 하기 때문에, 위 주석 부분('# [Interceptor 정보 추가]') 위치에 Interceptor에 대한 구성 정보가 추가된다. 
+Interceptor 중, 수집된 데이터 중, 가비지 데이터(garbage data)로부터 데이터를 필터링 하기 때문에, filterInterceptor로 구성하고, type은 regular expression(정규식)이며, regex에는 데이터에 대응하는 정규식을 작성한다. 아래에서는 숫자 14자리에 대한 정규식을 작성하였다. excludeEvents는 정규식에 의해 필터링된 데이터는 모두 제외시킨다는 구성 정보이다. 위 정보를 업데이트한 구성 파일은 아래와 같다.
+``` conf
+SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
+SeminarNotes_Agent.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.type = regex_filter
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.regex = ^\d{14}
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
+
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
+```
 
 
 
