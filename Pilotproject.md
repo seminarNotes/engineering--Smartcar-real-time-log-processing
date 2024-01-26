@@ -47,6 +47,7 @@ SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
 ``` conf
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
 ```
+
 마지막 작업은 위에서 구성된 3개의 객체의 채널을 서로 맞춰주는 것인데, sources-channels-sinks의 채널을 모두 동일하게 설정한다.
 ``` conf
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
