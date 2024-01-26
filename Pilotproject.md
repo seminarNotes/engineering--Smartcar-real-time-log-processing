@@ -4,6 +4,8 @@
 - 요구사항2 : 운전자의 운행 정보를 담긴 로그를 실시간으로 수집해서 주행패턴을 분석한다.
 
 
+아래 내용는 프로젝트를 구성하고 수행하는 내용에 대해서만 작성을 하고, 관련된 용어와 프레임워크에 대한 설명은 각각 다른 문서에서 다룰 예정이다.
+
 
 1. 수집 요구사항의 구체화
 
@@ -19,15 +21,37 @@
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
 먼저, Agent 이름을 설정해야 하는데, 구성 파일 내 객체를 구분하는 이름이기 때문에 구성 파일(.conf)와 동일하게 한다면, Agent 이름은 큰 제약은 없다. 여기 Agent를 SeminarNotes_Agent라고 가정하고, 구성 파일을 작성해보겠다. 구성 파일은 Agent가 어떤 파일과 데이터를 읽어, 어떤 동작을 하는지 명세하는 파일이며, 각 구성 정보는 다음과 같은 의미를 갖는다.
 
+먼저, sources, channels, sinks에 대해 정의를 한다.
 ``` conf
 SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
-SeminarNotes_Agent.channels - SmartCarInfo_Channel
+SeminarNotes_Agent.channels = SmartCarInfo_Channel
 SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink
 ```
 
+정의된 각 구성요소들의 상세 정보에 대해 값을 작성한다. 소스의 타입은 spoodir를 사용하며, 로그 파일이 생성 되는 위치는 '/home/.../specific-path'이고, 처리된 파일은 즉시(immediate) 삭제하며, 배치 사이즈는 1000으로 한번에 처리할 수 있는 일의 양을 의미한다.
+``` conf
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
+```
 
+아래는 채널에 대한 내용이다. 채널(channels)은 sources와 sinks 사이에서 중간 버퍼 역할을 수행한다. channels의 tpye은 memory, file, DB 세 가지 경우가 있는데, 그 중 memory의 속도가 가장 빠르다. Capacity/transactionCapacity(수용력/처리수용력)은 각각 10만/1만으로 설정하였다.
+``` conf
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+```
 
-
+데이터는 sources와 channels을 통해 sinks로 도착한다. 여기에서는 수집된 데이터를 log로 처리하기 때문에, type을 logger로 설정하였다.
+``` conf
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
+```
+마지막 작업은 위에서 구성된 3개의 객체의 채널을 서로 맞춰주는 것인데, sources-channels-sinks의 채널을 모두 동일하게 설정한다.
+``` conf
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
+```
 
 
 
