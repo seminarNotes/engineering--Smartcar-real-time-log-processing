@@ -32,7 +32,7 @@
 - Value (가치): 데이터로부터 가치를 추출하고 활용하는 능력
 - Variability (변동성): 데이터의 변동성 및 불규칙성을 다루며, 데이터의 빠른 변화
 
-<img src="./images/introduction_big_data_definition.png" width="800" height="400" alt="Textbook">
+<img src="./images/introduction_big_data_definition.png" width="800" height="400" alt="introduction_big_data_definition.png">
 
 이러한 6가지 "V"는 빅데이터의 주요 특성을 설명하는데 도움을 주며, 빅데이터 분석 및 활용에 대한 방향성을 제시하는데 사용한다. 결론적으로, 위 6V로 정의한 빅데이터의 정의는 현재 이 순간에도 방대한 크기(Volume)의 다양한(Varity) 데이터들이 빠른 속도(Velocity)로 발생하고 있다. 빅데이터는 3V(Volume, Varity, Velocity)를 수용하며, 데이터의 진실성(Veracity)을 확보하고, 분석 데이터를 시각화(Visualization)함으로써 새로운 효익을 가져다 줄 가치(Value)를 창출하는 것이다.
 
