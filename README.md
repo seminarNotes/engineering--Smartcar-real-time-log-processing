@@ -11,8 +11,8 @@
 
 위 교재를 공부하고, 관련된 내용을 정리하기 위해 빅데이터에 대한 이론, 프레임워크, 프로젝트 내용으로 총 3개의 내용을 나누어 markdown(.md)을 작성한다.
 
-|File Name|Link|Description|
-|--|--|--|
-|Introduction|
-
-[Facebook]: http://www.facebook.com  
+|FileName|Desciption|
+|--|--|
+|[Introduction.md](https://www.google.com)|빅데이터에 대한 전반적 내용|
+|[Framework.md](https://www.google.com)|각 프레임워크에 대한 소개와 간단한 조작|
+|[Pilotproject.md](https://www.google.com)|프로젝트에 대한 내용|
