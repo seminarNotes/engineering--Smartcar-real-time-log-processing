@@ -37,7 +37,7 @@
 
 이러한 6가지 "V"는 빅데이터의 주요 특성을 설명하는데 도움을 주며, 빅데이터 분석 및 활용에 대한 방향성을 제시하는데 사용한다. 결론적으로, 위 6V로 정의한 빅데이터의 정의는 현재 이 순간에도 방대한 크기(Volume)의 다양한(Varity) 데이터들이 빠른 속도(Velocity)로 발생하고 있다. 빅데이터는 3V(Volume, Varity, Velocity)를 수용하며, 데이터의 진실성(Veracity)을 확보하고, 분석 데이터를 시각화(Visualization)함으로써 새로운 효익을 가져다 줄 가치(Value)를 창출하는 것이다.
 
-## 2. Object of the Big Data
+## 2. Big Data Objectives
 성공적인 빅데이터의 시스템의 구축과 운영을 위해, 데이터, 사람, 기술을 고려해야한다. 빅데이터 시스템을 통해 정보를 제공하여, 최종적으로, 다음 3가지와 같은 의사결정 인사이트를 발견하는데 그 목적이 있다.
 
 - 비용 절감 인사이트
@@ -50,7 +50,7 @@
 
 ![bigdata_insight](./images/1_2_2.png)
 
-## 3. Utilization of Big Data
+## 3. Big Data Utilization
 빅데이터는 넓은 영역에서 다음 3가지 방법으로 활용된다.
 
 - 상품/서비스 : 빅데이터를 상품/서비스 개발 및 개선에 활용
@@ -60,7 +60,7 @@
 ![bigdata_insight](./images/1_3_1.png)
 
 
-## 4. Project for Big Data
+## 4. Big Data Project
 빅데이터는 크게 다음 3가지의 유형이 존재한다.
 
 - 플랫폼 구축형 프로젝트
