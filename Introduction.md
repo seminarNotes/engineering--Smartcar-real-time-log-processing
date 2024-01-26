@@ -81,7 +81,8 @@
 ## 5. Big Data Technology Evolution
 초기에는 빅데이터를 Storage(저장소)의 역할로만 기술이 발전이 되었지만, 이후, 이머징 기술이 따라 빠른 발전를 맞게 되었다. 빅데이터의 기술 변화는 아래 그림과 같다.
 
-![bigdata_techchange](./images/1_5_1.png)
+<img src="./images/introduction_big_data_technology_evolution.png" width="600" height="300" alt="introduction_big_data_technology_evolution">
+
 초기에는 대용량 저장소와 대규모 배치 처리 기술이 집중이 되었다. 이 후, 실시간 처리와 온라인 분석 기술이 발전이 되었고, 현재는 전처리 및 분석 마트, 고급 분석 및 마이닝에 초점이 맞춰 발전하고 있다. 특히, 빅데이터 기술의 중심에는 Hadoop이라는 프레임워크가 존재한다.
 
 
