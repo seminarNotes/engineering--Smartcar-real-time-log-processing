@@ -12,12 +12,12 @@
 
 위 교재를 공부하고, 관련된 내용을 정리하기 위해 빅데이터에 대한 이론, 프레임워크, 프로젝트 내용으로 총 3개의 내용을 나누어 markdown(.md)을 작성한다.
 
-|FileName|Desciptions|Reference|
+|Title|Desciptions|Reference|
 |--|--|--|
-|[Introduction.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 내용|김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022|
-|[Framework.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|프레임워크에 대한 내용|
-|[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용| [GitHub Link](https://github.com/wikibook/bigdata2nd), Inflearn Link|
-|[Terminology.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용||
+|[Introduction](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 내용|김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022|
+|[Framework](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|프레임워크에 대한 내용|
+|[Pilotproject](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용| [GitHub Link](https://github.com/wikibook/bigdata2nd), Inflearn Link|
+|[Terminology](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용||
 
 \* Inflearn Link = https://www.inflearn.com/
 
