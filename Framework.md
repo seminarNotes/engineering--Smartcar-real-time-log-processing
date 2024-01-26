@@ -18,26 +18,6 @@
 
 하둡은 하드웨어 클러스터를 활용하여 대용량 데이터를 효율적으로 처리하고 저장할 수 있는 기능을 제공한다. 이러한 특징으로 하둡은 대규모 데이터 처리, 데이터 분석, 머신러닝, 그리고 데이터 웨어하우스 등 다양한 빅데이터 작업에 사용된다. 또한 하둡 생태계는 다양한 관련 프로젝트와 도구를 포함하고 있어, 다양한 빅데이터 요구 사항에 맞게 확장하여 사용할 수 있다.
 
-아래에서 설명하는 server01과 server02는 직접 linux 서버를 구성한 것을 기준으로 설명한 것으로, 각 프레임워크는 cloudera를 통해 구축하였으며, host의 구성은 아래와 같다.  
-
-|Name|Roles|
-|--|--|
-|server01.hadoop.com|HDFS Balancer|
-|server01.hadoop.com|HDFS DataNode|
-|server01.hadoop.com|HDFS NameNode|
-|server01.hadoop.com|HDFS SecondaryNameNode|
-|server01.hadoop.com|Cloudera Management Service Alert Publisher|
-|server01.hadoop.com|Cloudera Management Service Event Server|
-|server01.hadoop.com|Cloudera Management Service Host Monitor|
-|server01.hadoop.com|Cloudera Management Service Service Monitor|
-|server01.hadoop.com|YARN (MR2 Included) JobHistory Server|
-|server01.hadoop.com|YARN (MR2 Included) ResourceManager|
-|server02.hadoop.com|HDFS DataNode|
-|server02.hadoop.com|YARN (MR2 Included) NodeManager|
-|server02.hadoop.com|ZooKeeper Server|
-
-![host](./images/allhost.png)
-
 ## Table of Contents
 
 1. [Hadoop Distributed File System](#1.-Hadoop-Distributed-File-System)
