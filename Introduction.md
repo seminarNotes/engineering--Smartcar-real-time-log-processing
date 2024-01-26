@@ -56,7 +56,9 @@
 - 마케팅 지원 : 빅데이터를 대규모 고객 및 시장 분석에 활용
 - 리스크 관리 : 빅데이터를 리스크 검출 및 예측 분석에 활용
 
-![bigdata_insight](./images/1_3_1.png)
+<img src="./images/introduction_big_data_utilization1.png" width="600" height="300" alt="introduction_big_data_utilization1">
+
+<img src="./images/introduction_big_data_utilization2.png" width="600" height="300" alt="introduction_big_data_utilization2">
 
 
 ## 4. Big Data Project
