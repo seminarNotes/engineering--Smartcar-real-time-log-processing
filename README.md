@@ -19,5 +19,5 @@
 |[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용| [GitHub Link](https://github.com/wikibook/bigdata2nd), Inflearn Link|
 |[Terminology.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용||
 
-Inflearn Link = https://www.inflearn.com/
+\* Inflearn Link = https://www.inflearn.com/
 
