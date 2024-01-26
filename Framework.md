@@ -22,6 +22,7 @@
 
 1. [Hadoop Distributed File System](#1.-Hadoop-Distributed-File-System)
 2. [ZooKeeper](#2.-ZooKeeper)
+3. [Flume](#3.-Flume)
 
 ## 1. Hadoop Distributed File System  
 
@@ -247,7 +248,19 @@ $ zookeeper-client
 [zk: localhost:2181(CONNECTED) 0]: get \pilot-pjt
 [zk: localhost:2181(CONNECTED) 0]: delete \pilot-pjt
 
-
-
-
 zookeeper-client 실행
+
+## 3. Flume  
+빅데이터를 수집하는 기술 중, Flume은 원천에 있는 데이터를 파일, DB, API, socker 등의 다양한 유형으로부터 데이터를 수집할 때, 프로토콜나 메세지폼의 주기를 고려해야하지만, Flume은 이러한 고려 대상을 호환한다
+또한, Flume은 이러한 데이터를 수집하여, HDFS에 저장하는 기능을 수행한다. Flume의 주요 구성 요소를 아래와 같다.
+
+- Source : 다양한 원천 시스템의 데이터를 수집하기 위해 Avro, Thrift, JMS, Spool Dir, Kafka 등 주요 컴포넌트를 제공하며, 수집한 데이터를 Channel로 전달
+- Sink : 수집한 데이터를 Channel로부터 전달받아 최종 목적지에 저장하기 위한 기능으로 HDFS, Hive, Logger, Avro, ElasticSearch, Thrift 등에 제공
+- Channel : Source와 Sink를 연결하여, 데이퍼를 버퍼링하는 컴포넌트로 메모리, 파일, 데이터베이스를 채널의 저장소로 이용
+- Interceptor : Source와 Channel 사이에서 데이터 필터링 및 가공하는 컴포넌트로 timestamp, Host, Regex Filtering 등을 기본 제공하며, 필요시 사용자 정의 Interceptor를 추가
+- Agent : Source -> (Intercept) -> Channel -> Sink 컴포넌트 순으로 구성된 작업 단위로 독립된 인스턴스를 생성
+
+플럼 에이전트
+Source -> Channel -> Sink
+플럼을 어떻게 구조하는가에 따라 다양한 데이터 파이프라인을 구현할 수 있다.
+
