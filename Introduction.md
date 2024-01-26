@@ -47,7 +47,7 @@
 
 그렇다면, 빅데이터의 인사이트는 무엇일까 ? 빅데이터의 인사이트는 통찰력이라고 하며, 현상을 이해하는 인사이트, 현상을 발견하는 인사이트, 현상을 예측하는 인사이트로 나뉜다. 현상의 이해는 대규모 데이터로부터 통계량을 산출하고, 과거에 발생한 일에 대한 원인을 분석하는 것이다. 현상의 발견은 데이터의 패턴을 발견하고,해석하고, 해석을 통해 현재 발생하는 일을 분석하는 인사이트라 할 수 있다. 마지막으로, 현상 예측 인사이트는 현재 발생하고 있는 일을 모형에 적용하고, 미래에 발생할 현상을 예측하는 인사이트이다.  
 
-<img src="./images/introduction_big_data_objectives2.png" width="800" height="1200" alt="introduction_big_data_objectives2">
+<img src="./images/introduction_big_data_objectives2.png" width="800" height="1000" alt="introduction_big_data_objectives2">
 
 ## 3. Big Data Utilization
 빅데이터는 넓은 영역에서 다음 3가지 방법으로 활용된다.
