@@ -59,13 +59,16 @@
 <img src="./images/introduction_big_data_objectives2.png" width="600" height="750" alt="introduction_big_data_objectives2">
 
 ## 3. Big Data Utilization
-빅데이터는 넓은 영역에서 다음 3가지 방법으로 활용된다.
+빅데이터는 비용 절감, 수익 창출, 문제 해결의 목적을 위해 활용한다는 사실을 분명히 하였다. 그렇다면 어떻게(HOW) 활용해야 할까? 현재 빅데이터를 사용하는 사업 분야는 너무나 다양하지만, 넓은 영역에서 다음 3가지 방법으로 활용된다고 볼 수 있다.
 
 - 상품/서비스 : 빅데이터를 상품/서비스 개발 및 개선에 활용
 - 마케팅 지원 : 빅데이터를 대규모 고객 및 시장 분석에 활용
 - 리스크 관리 : 빅데이터를 리스크 검출 및 예측 분석에 활용
 
 <img src="./images/introduction_big_data_utilization1.png" width="600" height="300" alt="introduction_big_data_utilization1">
+
+위 그림에서 3V 데이터를 빅데이터 레이크(Big data Lake)에 저장하고,
+
 
 <img src="./images/introduction_big_data_utilization2.png" width="600" height="300" alt="introduction_big_data_utilization2">
 
