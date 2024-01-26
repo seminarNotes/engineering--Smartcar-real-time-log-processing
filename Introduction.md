@@ -139,21 +139,19 @@
 ### 6.2. Storage  
 수집한 데이터를 분산 스토리지에 영구/임시 저장하는 기술이다.  다양한 데이터 저장소 유형에 따라 데이터를 영구적으로 저장하거나 버퍼링하고 처리할 수 있으며, 아래와 같이 크게 4가지 유형으로 구분될 수 있다.
 
-### 6.2.1. Distributed Storage for Storing Entire Large Files  
+#### 6.2.1. Distributed Storage for Storing Entire Large Files  
 대용량 파일 전체를 영구적으로 저장하기 위해 사용되는 데이터 저장소로, 파일의 크기가 크기 때문에 주로 분산 파일 시스템에 활용된다. 대표적으로 Hadoop HDFS, Amazon S3, Google Cloud Storage 등이 있다.
 
-### 6.2.2. NoSQL Database for Storing Entire Large-scale Messaging Data
+#### 6.2.2. NoSQL Database for Storing Entire Large-scale Messaging Data
 NoSQL 데이터베이스는 대규모 메시징 데이터를 영구적으로 저장하며, Structure된 Schema가 없기 때문에 RDBMS보다 확장성이 뛰어나가는 장점이 있다. 대표적으로 MongoDB, Cassandra, HBase 등이 있다.
 
-### 6.2.3. In-Memory and Cache Storage for Storing Partial Large-scale Messaging Data
+#### 6.2.3. In-Memory and Cache Storage for Storing Partial Large-scale Messaging Data
 대규모 메시징 데이터 중 일부만을 메모리에 저장하여 빠른 액세스를 하기 위해 사용하며, 따라서, 실시간 처리 및 검색 기능을 위해 활용되는 것이 적절하다. Redis, Memcached, Apache Kafka가 이 역할을 수행할 수 있다.
 
-### 6.2.4. Message Oriented Middleware for Buffering Entire Large-scale Messaging Data
+#### 6.2.4. Message Oriented Middleware for Buffering Entire Large-scale Messaging Data
 Message Oriented Middleware(i.e. MOM)는 대규모 메시징 데이터를 버퍼링하고 중간에 전달하며,  데이터 흐름을 관리하고 스케일링을 지원하는 미들웨어이다.  대표적인 예시로 Apache Kafka, RabbitMQ, ActiveMQ 등이 있다.
 
 빅데이터 적재 기술은 수집된 데이터의 성격에 따라 적재 저장소를 구분하여 유형별로 저장해야 한다. 예를 들어, 대용량 파일 적재는 주로 HDFS 저장소를 사용하면 되지만, 실시간 및 대량으로 발생하는 작은 메세지 데이터를 HDFS에 저장할 경우, 타일 수가 기하급수적으로 증가하여, 관리 노드와 병렬 처리의 효율성이 크게 떨어진다. 빅데이터가 적재될때는 추가적으로 전처리 작업이 수행되기도 하는데, 탐색 분석 단계를 위한 비정형, 음성, 이미지, 텍스트, 동영상 데이터를 정형 데이터로 가공하거나 개인 정보로 판단되는 데이터를 비식별 처리하는 작업도 포함이 된다. 
-
-
 
 ### 6.3. Processing/Exploration 
 빅데이터 처리/탐색 과정은 대용량 저장소에 적재된 데이터를 분석에 활용하기 우해 데이터를 정형화 정규화를 하는 기술이다. 이 과정에서 적재된 빅데이터를 지속적으로 관찰하는 탐색적 분석과 탐색 결과를 정기적으로 구조화하는 작업을 수행한다. 특히,데이터를 탐색, 선택, 변환, 통합, 축소 등의 작업을 수행하고, 내부의 정형/비정형 데이터를 결합해 기존의 기술적 관계로 만들지 못했던 새로운 데이터 셋 생성하는 중요한 단계를 포함하기도 한다. 또한, 정기적으로 발생하는 처리 탐색의 과정을 워크플로우로 프로세스화해서 자동화하고, 워크플로우 작업이 끝나면 이 데이터셋들을 특화된 데이터 저장소, 데이터 마트 등으로 옮겨져 데이터셋의 측정 가능한 구조로 만들어지게 함으로써 빅데이터 분석을 빠르고 정화갛게 해주는 역할을 수행하게 된다.
