@@ -19,7 +19,11 @@
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
 먼저, Agent 이름을 설정해야 하는데, 구성 파일 내 객체를 구분하는 이름이기 때문에 구성 파일(.conf)와 동일하게 한다면, Agent 이름은 큰 제약은 없다. 여기 Agent를 SeminarNotes_Agent라고 가정하고, 구성 파일을 작성해보겠다. 구성 파일은 Agent가 어떤 파일과 데이터를 읽어, 어떤 동작을 하는지 명세하는 파일이며, 각 구성 정보는 다음과 같은 의미를 갖는다.
 
-
+``` conf
+SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
+SeminarNotes_Agent.channels - SmartCarInfo_Channel
+SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink
+```
 
 
 
