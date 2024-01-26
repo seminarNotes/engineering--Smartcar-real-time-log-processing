@@ -5,7 +5,8 @@
 
 
 
-1. 수집 요구사항의 구체화 
+1. 수집 요구사항의 구체화
+
 |Specific Requirements|Analysis and Solution Approach|
 |--|--|
 |스마트카로부터 로그 파일들을 주기적으로 발생|플롬을 이용해 대용량 배치 파일 및 실시간 로그 파일을 수집|
