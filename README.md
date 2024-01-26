@@ -14,5 +14,5 @@
 |FileName|Desciption|
 |--|--|
 |[Introduction.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 전반적 내용|
-|[Framework.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|각 프레임워크에 대한 소개와 간단한 조작|
+|[Framework.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|각 프레임워크에 대한 소개와 간단한 조작|
 |[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용|
