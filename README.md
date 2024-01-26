@@ -19,5 +19,5 @@
 
 
 ## 1. Reference
-[1] 김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022
+[1] 김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022  
 [2] GitHub. https://github.com/wikibook/bigdata2nd. 2024.01.20. 
