@@ -4,11 +4,8 @@
   
 ## 0. Overview
 
-<img src="./images/textbook.png" width="450" height="500" alt="Textbook">
+여기에서는 빅데이터에 전반적인 내용을 다룬다.
 
-몇 주간, 데이터 이론과 분석 이론을 공부하고 몇 가지 프레임워크를 활용하여 데이터 파이프라인을 구축하고 분석을 해보았다. 결국 데이터 엔지니어링을 공부하기 위해선 분산 컴퓨팅으로 데이터를 처리하는 경험이 꼭 필요하다고 생각했고, 적어도 하나의 책이라도 완벽하게 이해해보자는 새해?목표를 세웠다. 나는 시중의 많은 책들 중 '실무로 배우는 빅데이터 기술'를 선택했다. 이 교재는 빅데이터 이론에서부터 실제 분산 환경에서 데이터 ETL, 데이터 분석, 활용까지 다루고 있으며, 내 목표는 2주 동안 이 내용을 완벽히 이해하고 습득하는 거다.
-
-부디 이 공부가 성공적으로 간절히 바라며 
 
 ## Table of Contents
 
@@ -35,6 +32,8 @@
 - Value (가치): 데이터로부터 가치를 추출하고 활용하는 능력
 - Variability (변동성): 데이터의 변동성 및 불규칙성을 다루며, 데이터의 빠른 변화
 
+<img src="./images/introduction_big_data_definition.png" width="800" height="400" alt="Textbook">
+
 이러한 6가지 "V"는 빅데이터의 주요 특성을 설명하는데 도움을 주며, 빅데이터 분석 및 활용에 대한 방향성을 제시하는데 사용한다. 결론적으로, 위 6V로 정의한 빅데이터의 정의는 현재 이 순간에도 방대한 크기(Volume)의 다양한(Varity) 데이터들이 빠른 속도(Velocity)로 발생하고 있다. 빅데이터는 3V(Volume, Varity, Velocity)를 수용하며, 데이터의 진실성(Veracity)을 확보하고, 분석 데이터를 시각화(Visualization)함으로써 새로운 효익을 가져다 줄 가치(Value)를 창출하는 것이다.
 
 ## 2. Big Data Objectives
@@ -44,11 +43,11 @@
 - 수익 창출 인사이트
 - 문제 해결 인사이트
 
-![bigdata_goal](./images/1_2_1.png)
+<img src="./images/introduction_big_data_objectives1" width="800" height="400" alt="Textbook">
 
 그렇다면, 빅데이터의 인사이트는 무엇일까 ? 빅데이터의 인사이트는 통찰력이라고 하며, 현상을 이해하는 인사이트, 현상을 발견하는 인사이트, 현상을 예측하는 인사이트로 나뉜다. 현상의 이해는 대규모 데이터로부터 통계량을 산출하고, 과거에 발생한 일에 대한 원인을 분석하는 것이다. 현상의 발견은 데이터의 패턴을 발견하고,해석하고, 해석을 통해 현재 발생하는 일을 분석하는 인사이트라 할 수 있다. 마지막으로, 현상 예측 인사이트는 현재 발생하고 있는 일을 모형에 적용하고, 미래에 발생할 현상을 예측하는 인사이트이다.  
 
-![bigdata_insight](./images/1_2_2.png)
+<img src="./images/introduction_big_data_objectives2" width="800" height="400" alt="Textbook">
 
 ## 3. Big Data Utilization
 빅데이터는 넓은 영역에서 다음 3가지 방법으로 활용된다.
