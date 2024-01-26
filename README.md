@@ -16,7 +16,8 @@
 |--|--|--|
 |[Introduction.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 내용|김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022|
 |[Framework.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|프레임워크에 대한 내용|
-|[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용| [GitHub Link](https://github.com/wikibook/bigdata2nd) , [Inflearn Link](https://www.inflearn.com/)|
+|[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용| [GitHub Link](https://github.com/wikibook/bigdata2nd), Inflearn Link|
 |[Terminology.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용||
 
+Inflearn Link = https://www.inflearn.com/
 
