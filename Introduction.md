@@ -89,7 +89,7 @@
 ## 6. Big Data Implementation Technology
 빅데이터를 처리하는 단계는 수집-적재-처리-탐색-분석-응용이며, 이 단계를 처리하기 위한 기술과 프레임워크가 매우 다양하다.
 
-<img src="./images/introduction_big_data_implementation-technology1.png" width="600" height="300" alt="introduction_big_data_implementation-technology1">
+<img src="./images/introduction_big_data_implementation-technology1.png" width="500" height="250" alt="introduction_big_data_implementation-technology1">
 
 ### 6.1. Collection  
 빅데이터의 수집 기술은 조직의 내/외부의 다양한 시스템으로부터 원천 데이터를 효과적으로 수집하는 기술이다. 빅데이터 수집에는 기존의 수집 시스템에서 다뤘던 데이터보다 더 크고 다양한 형식의 데이터를 빠르게 처리해야 하기 때문에 분산 기능의 선형적 확장이 필요한 것이 특징이다. 빅데이터의 수집기는 원천 시스템의 다양한 인터페이스 유형, 데이터베이스, 파일, API, 메세지 등과 연결되어 정형/비정형 데이터를 대용량으로 수집한다. 특히, 외부데이터 소셜 미디어, 블로그, 포털, 뉴스 등의 데이터를 수집 크롤링과 NLP 등 비정형 처리를 위한 기술이 선택적으로 적용된다. 수집처리에는 대용량 파일 수집과 실시간 스트림 수집으로 나눌 수 있는데, 실시간 수집의 경우에는 CEP 컴플렉스 이벤트 프로세싱, ESP 이벤트 스트림 프로세스 기술이 적용되어 수집 중인 데이터로부터 이벤트를 감지해 빠른 후속 처리를 수행한다.
