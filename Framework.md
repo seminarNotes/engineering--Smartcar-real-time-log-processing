@@ -23,7 +23,7 @@
 1. [Hadoop Distributed File System](#1.-Hadoop-Distributed-File-System)
 2. [ZooKeeper](#2.-ZooKeeper)
 3. [Flume](#3.-Flume)
-
+4. [Kafka](#3.-Kafka)
 ## 1. Hadoop Distributed File System  
 
 Hadoop Distributed File System (HDFS)는 아파치 하둡(Hadoop) 프레임워크의 핵심 구성 요소 중 하나로, 대용량 데이터를 저장하고 관리하기 위한 분산 파일 시스템이다. HDFS는 주로 빅데이터 처리를 위한 분산 스토리지 시스템으로 사용되며, 하둡 클러스터의 여러 노드에 데이터를 블록(일반적으로 128MB 또는 256MB 크기) 단위로 나누어 분산 저장하여 고가용성과 데이터 병렬 처리를 할 수 있도록 한다. 
