@@ -16,3 +16,8 @@
 |[Introduction.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 전반적 내용|
 |[Framework.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|각 프레임워크에 대한 소개와 간단한 조작|
 |[Pilotproject.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Pilotproject.md)|프로젝트에 대한 내용|
+
+
+## 1. Reference
+[1] 김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022
+[2] GitHub. https://github.com/wikibook/bigdata2nd. 2024.01.20. 
