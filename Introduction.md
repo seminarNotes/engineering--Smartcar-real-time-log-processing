@@ -4,7 +4,9 @@
   
 ## 0. Overview
 
-여기에서는 빅데이터에 전반적인 내용을 다룬다.
+이 글에서는 빅데이터에 대한 개념과 구성에 대해서 설명한다. 참고한 도서의 설명과 시각적 자료를 기반으로, 설명이 부족하다고 생각되는 부분을 추가적인 조사를 통해 내용을 구성했다. 또, 추가적인 설명이 요구되는 용어에 대해서는 별도의 문서를 통해 정리하였다.
+
+ [Terminology.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)
 
 
 ## Table of Contents
