@@ -245,6 +245,10 @@ $ java -cp bigdata.smartcar.loggen-1.0 jar com.wikibook.bigdata.smartcar.loggen.
 $ java -cp bigdata.smartcar.loggen-1.0 jar com.wikibook.bigdata.smartcar.loggen.DriverLogMain [YYYYMMDD] [NumCar] &
 ```
 [YYYYMMDD], [NumCar]는 입력 변수로, 로그 파일 생성 시, 로그 일자와 차량 대수를 의미한다.
-
-
 -->
+
+
+
+## 2. Big Data Ingestion (Loading Large Log Files)  
+이번 장에서는 빅데이터 대용량 파일 적재에 대한 기본 개념과 적재 기술인 하둡과 주키퍼의 주요 기능과 아키텍쳐, 활용 방법에 대해 공부하였다.
+특히, 스마트카에서 발생하는 로그 파일 적재와 관련된 요구사항을 구체화하여, 적재 요건을 해결하기 위핸 파일럿 아키텍처를 알아보았다.
