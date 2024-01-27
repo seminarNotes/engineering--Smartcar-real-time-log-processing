@@ -33,9 +33,20 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 각 프레임워크에 대한 활용 방법을 익히고, 실제 Java에 의한 로그 생성을 작동하여, 각 프레임워크가 데이터를 수집하는지 수집 기능 테스트를 수행하였다.
 
 1.2. 결과물
+왼쪽 화면 내, JAVA(.jar)에 의한 로그 시뮬레이터에서 로그파일을 실시간으로 생성하는 것이고, Kafka consumer를 통해 생성된 로그 파일을 수신하는 것 모습이다. 마지막 CLI 화면은 flumer이다.
+
+오른쪽 화면 내, Cloudera Manager가 Cluster에 포함된 각종 Framework의 설치 및 실행, 상태에 대해 모니터링할 수 있도록 UI를 제공하고 있고, Framwork의 동작에 따라 컴퓨터와 서버의 자원도 모니터링 하여 사용자에게 정보를 제공한다.
+
+
+![pilotproject_data_collection_result](./images/pilotproject_data_collection_result.gif)
+
 
 1.3. 느낀점
-
+- Cloudera를 사용하며, 각종 Framework와 아키텍처를 구성하는 것에 대해 매우 편리함을 느꼈다.
+- 각 Framework 내 configuration를 정확하게 작성하기 위해서는 각 conponent와 agent가 수행하는 역할에 대해 올바르게 이해하고 있어야 한다.
+- data, file을 어느 객체가 어디에서 어디로 전송하는지 이해하고, pipeline을 구축해야 한다.
+- node, pipeline에 대해서는 사용자가 꼼꼼히 확인하여 입력해야하며, 이를 위해 데이터 엔지니어는 항상 구조를 이해하고 기억하고 있어야겠다는 생각을 했다.
+- 생각보다 각 module 또는 agent 단위가 파일을 읽고, 쓰는 행위가 많다. 따라서, command line 입력 외에 대부분의 에러는 agent가 파일에 접근할 때 발생하는 에러일 것이라 예상한다.
  
 
 
