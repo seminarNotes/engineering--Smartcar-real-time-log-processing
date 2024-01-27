@@ -110,8 +110,37 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Chan
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
 
+마지막으로 에이전트에 추가해줄 설정은 DriverCarInfo이다. 수집 해야 하는 로그 정보는 차량에 대한 정보 뿐만 아니라 운전자에 대한 실시간 운행 정보도 수집을 해야해서, 그 데이터를 별도로 관리하기 위해 DriverCarInfo라는 설정을 추가한다. 차량 로그 정보(SmartCarInfo)와 동일하게, 상단부에 sources, channels, sinks에 대해 정의를 한다. 그리고, 하단부 DriverCarInfo에서 사용할 TailSource에 대해 정의를 한다. 차량 로그 정보(SmartCarInfo)의 경우 배치파일로 처리를 하지만, 운전자의 운행 정보는 실시간으로 처리하기 때문에 Type은 exec(실행 파일), command는 로그 파일 내 새롭게 추가된 데이터만 모니터링할 수 있게 'tail -F /home/.../SmartCarDriverInfo.log'로 설정한다. 마지막으로 한꺼번에 처리할 수 있는 작업 단위(batch size)를 1000으로 세팅한다. 추가한 설정 정보는 아래와 같다.
 
+``` conf
+# [상단부]DriverCarInfo에 대한 정의 추가
+SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource  DriverCarInfo_TailSource
+SeminarNotes_Agent.channels = SmartCarInfo_Channel  DriverCarInfo_Chaneel
+SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink  DriverCarInfo_KafkaSink
 
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path/
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.type = regex_filter
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.regex = ^\d{14}
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
+
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+
+# [하단부]DriverCarInfo에 대한 설정 추가
+SeminarNotes_Agent.DriverCarInfo_TailSource.type = exec
+SeminarNotes_Agent.DriverCarInfo_TailSource.cammand = tail -F /home/.../SmartCarDriverInfo.log
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
+SeminarNotes_Agent.DriverCarInfo_TailSource.restart = true
+SeminarNotes_Agent.DriverCarInfo_TailSource.batchsize = 1000
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
+```
 
 
 
