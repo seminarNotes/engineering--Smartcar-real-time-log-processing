@@ -1,9 +1,41 @@
+# Pilotproject
+최초 작성일 : 2024-01-22  
+마지막 수정일 : 2024-01-27
+  
+## 0. Overview
+
 본 글에서는 프로젝트에 대한 전체적인 흐름과 결과물에 대해서만 정리할 것이다.
 아래 내용는 프로젝트를 구성하고 수행하는 내용에 대해서만 작성을 하고, 관련된 용어와 프레임워크에 대한 설명은 각각 다른 문서에서 다룰 예정이다.
 특히, 각 프레임워크의 필요한 구성에 대해서는 설명하되, 세부적인 문법에 대해서는 다른 문서에서 다룰 예정이다.
-먼저, 본 프로젝트의 목표는 아래와 같다.
+ 
 
-그리고, 아래에 명령어 중, 파일 이름/경로, ip, port번호 등은 교재나 학습자료로 주어진 키워드가 아닌, 학습 후, 복습차원에서 임의의 숫자와 문자를 사용하였다.
+
+## Table of Contents
+
+
+1. [Big Data Collection](#1.-Big-Data-Collection)
+2. [Big Data Ingestion (Loading Large Log Files)](#2.-Big-Data-Ingestion-(Loading-Large-Log-Files))
+3. [Big Data Ingestion (Real-time Log/Analysis Loading)](#3.-Big-Data-Ingestion-(Real-time-Log/Analysis-Loading))
+4. [Big Data Exploration](#4.-Big-Data-Exploration)
+5. [Big Data Analysis](#5.-Big-Data-Analysis)
+6. [Expanding Analytical Environment](#6.-Expanding-Analytical-Environment)
+
+<!--
+빅데이터 수집 
+빅데이터 적재 : 대용량 로그 파일 적재 - 
+빅데이터 적재 : 실시간 로그 /분석 적재 - 
+빅데이터 탐색 
+빅데이터 분석 
+분석환경 확장 
+-->
+
+
+## 1. Big Data Collection
+
+빅데이터를 단순히 큰 데이터, 
+
+
+먼저, 본 프로젝트의 목표는 아래와 같다.
 
 프로젝트의 요구 사항
 
