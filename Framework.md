@@ -18,6 +18,29 @@
 
 - 확장성 및 성능 최적화: 클라우데라는 높은 확장성을 제공하며, 대규모 데이터 처리를 위해 최적화되어 있습니다. 이는 데이터 볼륨과 처리량이 증가해도 성능을 유지할 수 있게 해줍니다.
 
+
+아래에서 설명하는 server01과 server02는 직접 linux 서버를 구성한 것을 기준으로 설명한 것으로, 각 프레임워크는 cloudera를 통해 구축하였으며, host의 구성은 아래와 같다.  
+
+|Name|Roles|
+|--|--|
+|server01.hadoop.com|HDFS Balancer|
+|server01.hadoop.com|HDFS DataNode|
+|server01.hadoop.com|HDFS NameNode|
+|server01.hadoop.com|HDFS SecondaryNameNode|
+|server01.hadoop.com|Cloudera Management Service Alert Publisher|
+|server01.hadoop.com|Cloudera Management Service Event Server|
+|server01.hadoop.com|Cloudera Management Service Host Monitor|
+|server01.hadoop.com|Cloudera Management Service Service Monitor|
+|server01.hadoop.com|YARN (MR2 Included) JobHistory Server|
+|server01.hadoop.com|YARN (MR2 Included) ResourceManager|
+|server02.hadoop.com|HDFS DataNode|
+|server02.hadoop.com|YARN (MR2 Included) NodeManager|
+|server02.hadoop.com|ZooKeeper Server|
+
+![host](./images/allhost.png)
+
+
+
 따라서, 아래 프레임워크에 대한 설명과 실행도 클라우데라를 기반으로 실행하여 설명한 것이다. 이외 대표적인 종합적인 빅데이터 솔루션/서비스로는 Amazon Web Services, Google Cloud Platform, Microsoft Azure 등이 있다.
 
 ## Table of Contents
