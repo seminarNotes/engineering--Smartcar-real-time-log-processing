@@ -119,6 +119,58 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Chan
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
 
+마지막으로, '# 기본구성'에서 DriverCarInfo에 대한 Interceptor를 구성한다. DriverCarInfo의 경우, 실시간으로 수집된 데이터를 카프카로 보내야하기 때문에 '# 카프카 구성'에 Kafka_Sink를 정의한다. 이후, '# 채널 구성'에서 다른 객체와 정보를 서로 주고 받을 수 있도록 채널을 맞추는 세팅을 한다. 
+
+``` conf
+SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource  DriverCarInfo_TailSource
+SeminarNotes_Agent.channels = SmartCarInfo_Channel  DriverCarInfo_Chaneel
+SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink  DriverCarInfo_KafkaSink
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path/
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.type = regex_filter
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.regex = ^\d{14}
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
+
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+
+SeminarNotes_Agent.DriverCarInfo_TailSource.type = exec
+SeminarNotes_Agent.DriverCarInfo_TailSource.cammand = tail -F /home/.../SmartCarDriverInfo.log
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
+SeminarNotes_Agent.DriverCarInfo_TailSource.restart = true
+SeminarNotes_Agent.DriverCarInfo_TailSource.batchsize = 1000
+
+SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
+SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
+
+# 기본 구성
+SeminarNotes_Agent.sources.DriverCarInfo_TailSource.interceptors = filterInterceptor2
+
+SeminarNotes_Agent.sources.DriverCarInfo_TailSource.interceptors.filterInterceptor2.type = regex_filter
+SeminarNotes_Agent.sources.DriverCarInfo_TailSource.interceptors.filterInterceptor2.regex = ^\\d{14}
+SeminarNotes_Agent.sources.DriverCarInfo_TailSource.interceptors.filterInterceptor2.excludeEvents = false
+
+# 카프카 구성
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.type = org.apache.flume.sink.kafka.KafkaSink
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.topic = SmartCar-Topic
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.brokerList = server02.hadoop.com:9092
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.requiredAcks = 1
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.batchSize = 1000
+
+# 채널 구성
+SeminarNotes_Agent.channels.DriverCarInfo_Channel.type = memory
+SeminarNotes_Agent.channels.DriverCarInfo_Channel.capacity= 100000
+SeminarNotes_Agent.channels.DriverCarInfo_Channel.transactionCapacity = 10000
+
+SeminarNotes_Agent.sources.DriverCarInfo_TailSource.channels = DriverCarInfo_Channel
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.channel = DriverCarInfo_Channel
+```
+
 
 
 
