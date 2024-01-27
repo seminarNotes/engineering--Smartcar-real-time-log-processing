@@ -21,7 +21,7 @@
 
 
 
-#### 1. Agent 생성하기
+#### 1. SmartCarInfo Agent 생성하기
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
 먼저, Agent 이름을 설정해야 하는데, 구성 파일 내 객체를 구분하는 이름이기 때문에 구성 파일(.conf)와 동일하게 한다면, Agent 이름은 큰 제약은 없다. 여기 Agent를 SeminarNotes_Agent라고 가정하고, 구성 파일을 작성해보겠다. 구성 파일은 Agent가 어떤 파일과 데이터를 읽어, 어떤 동작을 하는지 명세하는 파일이며, 각 구성 정보는 다음과 같은 의미를 갖는다.
 
@@ -58,9 +58,6 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Chan
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
 
-
-
-#### 2. Agent에 Interceptor 추가하기
 앞에서 정의한 Agent의 구성 파일은 아래와 같다. 
 ``` conf
 SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
@@ -109,6 +106,10 @@ SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
+
+
+
+#### 2. 1. DriverCarInfo Agent 생성하기
 
 마지막으로 에이전트에 추가해줄 설정은 DriverCarInfo이다. 수집 해야 하는 로그 정보는 차량에 대한 정보 뿐만 아니라 운전자에 대한 실시간 운행 정보도 수집을 해야해서, 그 데이터를 별도로 관리하기 위해 DriverCarInfo라는 설정을 추가한다. 차량 로그 정보(SmartCarInfo)와 동일하게, 상단부에 sources, channels, sinks에 대해 정의를 한다. 그리고, 하단부 DriverCarInfo에서 사용할 TailSource에 대해 정의를 한다. 차량 로그 정보(SmartCarInfo)의 경우 배치파일로 처리를 하지만, 운전자의 운행 정보는 실시간으로 처리하기 때문에 Type은 exec(실행 파일), command는 로그 파일 내 새롭게 추가된 데이터만 모니터링할 수 있게 'tail -F /home/.../SmartCarDriverInfo.log'로 설정한다. 마지막으로 한꺼번에 처리할 수 있는 작업 단위(batch size)를 1000으로 세팅한다. 추가한 설정 정보는 아래와 같다.
 
