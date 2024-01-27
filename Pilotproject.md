@@ -3,6 +3,8 @@
 특히, 각 프레임워크의 필요한 구성에 대해서는 설명하되, 세부적인 문법에 대해서는 다른 문서에서 다룰 예정이다.
 먼저, 본 프로젝트의 목표는 아래와 같다.
 
+그리고, 아래에 명령어 중, 파일 이름/경로, ip, port번호 등은 교재나 학습자료로 주어진 키워드가 아닌, 학습 후, 복습차원에서 임의의 숫자와 문자를 사용하였다.
+
 프로젝트의 요구 사항
 - 요구사항1 : 차량의 다양한 장치로부터 발생하는 로그 파일을 수집해서 기능별 상태를 점검한다.
 - 요구사항2 : 운전자의 운행 정보를 담긴 로그를 실시간으로 수집해서 주행패턴을 분석한다.
@@ -23,7 +25,7 @@
 
 
 
-#### 1. SmartCarInfo Agent 생성하기
+#### 2.1. SmartCarInfo Agent 생성하기
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
 먼저, Agent 이름을 설정해야 하는데, 구성 파일 내 객체를 구분하는 이름이기 때문에 구성 파일(.conf)와 동일하게 한다면, Agent 이름은 큰 제약은 없다. 여기 Agent를 SeminarNotes_Agent라고 가정하고, 구성 파일을 작성해보겠다. 구성 파일은 Agent가 어떤 파일과 데이터를 읽어, 어떤 동작을 하는지 명세하는 파일이며, 각 구성 정보는 다음과 같은 의미를 갖는다.
 
@@ -42,11 +44,11 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
 ```
 
-아래는 채널에 대한 내용이다. 채널(channels)은 sources와 sinks 사이에서 중간 버퍼 역할을 수행한다. channels의 tpye은 memory, file, DB 세 가지 경우가 있는데, 그 중 memory의 속도가 가장 빠르다. Capacity/transactionCapacity(수용력/처리수용력)은 각각 10만/1만으로 설정하였다.
+아래는 채널에 대한 내용이다. 채널(channels)은 sources와 sinks 사이에서 중간 버퍼 역할을 수행한다. channels의 tpye은 memory, file, DB 세 가지 경우가 있는데, 그 중 memory의 속도가 가장 빠르다. Capacity/transactionCapacity(수용력/처리수용력)은 각각 5만/5천으로 설정하였다.
 ``` conf
 SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 50000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 5000
 ```
 
 데이터는 sources와 channels을 통해 sinks로 도착한다. 여기에서는 수집된 데이터를 log로 처리하기 때문에, type을 logger로 설정하였다.
@@ -78,8 +80,8 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterIntercept
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
 
 SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 50000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 5000
 
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
 
@@ -87,7 +89,7 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Chan
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
 
-#### 2. 1. DriverCarInfo Agent 생성하기
+#### 2.2. DriverCarInfo Agent 생성하기
 
 마지막으로 에이전트에 추가해줄 설정은 DriverCarInfo이다. 수집 해야 하는 로그 정보는 차량에 대한 정보 뿐만 아니라 운전자에 대한 실시간 운행 정보도 수집을 해야해서, 그 데이터를 별도로 관리하기 위해 DriverCarInfo라는 설정을 추가한다. 차량 로그 정보(SmartCarInfo)와 동일하게, 상단부에 sources, channels, sinks에 대해 정의를 한다. 그리고, 하단부 DriverCarInfo에서 사용할 TailSource에 대해 정의를 한다. 차량 로그 정보(SmartCarInfo)의 경우 배치파일로 처리를 하지만, 운전자의 운행 정보는 실시간으로 처리하기 때문에 Type은 exec(실행 파일), command는 로그 파일 내 새롭게 추가된 데이터만 모니터링할 수 있게 'tail -F /home/.../SmartCarDriverInfo.log'로 설정한다. 마지막으로 한꺼번에 처리할 수 있는 작업 단위(batch size)를 1000으로 세팅한다. 추가한 설정 정보는 아래와 같다.
 
@@ -107,8 +109,8 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterIntercept
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
 
 SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 50000
+SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 5000
 
 # [하단부]DriverCarInfo에 대한 설정 추가
 SeminarNotes_Agent.DriverCarInfo_TailSource.type = exec
@@ -159,19 +161,29 @@ SeminarNotes_Agent.sources.DriverCarInfo_TailSource.interceptors.filterIntercept
 
 # 카프카 구성
 SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.type = org.apache.flume.sink.kafka.KafkaSink
-SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.topic = SmartCar-Topic
+SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.topic = SmartCar-Topi
 SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.brokerList = server02.hadoop.com:9092
 SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.requiredAcks = 1
 SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.batchSize = 1000
 
 # 채널 구성
 SeminarNotes_Agent.channels.DriverCarInfo_Channel.type = memory
-SeminarNotes_Agent.channels.DriverCarInfo_Channel.capacity= 100000
-SeminarNotes_Agent.channels.DriverCarInfo_Channel.transactionCapacity = 10000
+SeminarNotes_Agent.channels.DriverCarInfo_Channel.capacity= 50000
+SeminarNotes_Agent.channels.DriverCarInfo_Channel.transactionCapacity = 5000
 
 SeminarNotes_Agent.sources.DriverCarInfo_TailSource.channels = DriverCarInfo_Channel
 SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.channel = DriverCarInfo_Channel
 ```
+
+#### 2.3. 기능 테스트
+
+아래 명령어를 통해 먼저, 로그 파일을 생성하는 log-simulator를 백그라운드 방식으로 실행한다.
+```
+$ java -cp bigdata.smartcar.loggen-1.0 jar com.wikibook.bigdata.smartcar.loggen.CarLogMain [YYYYMMDD] [NumCar] &
+$ java -cp bigdata.smartcar.loggen-1.0 jar com.wikibook.bigdata.smartcar.loggen.DriverLogMain [YYYYMMDD] [NumCar] &
+```
+[YYYYMMDD], [NumCar]는 입력 변수로, 로그 파일 생성 시, 로그 일자와 차량 대수를 의미한다.
+
 
 
 
