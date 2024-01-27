@@ -58,30 +58,7 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Chan
 SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
 ```
 
-앞에서 정의한 Agent의 구성 파일은 아래와 같다. 
-``` conf
-SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
-SeminarNotes_Agent.channels = SmartCarInfo_Channel
-SeminarNotes_Agent.sinks = SmartCarInfo_LoggerSink
-
-SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.type = spooldir
-SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specific-path
-SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
-SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
-
-# [Interceptor 정보 추가]
-
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.type = memory
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.capacity = 100000
-SeminarNotes_Agent.sources.SmartCarInfo_Channel.transactionCapacity = 10000
-
-SeminarNotes_Agent.sinks.SmartCarInfo_Channel.type = logger
-
-SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.channels = SmartCarInfo_Channel
-SeminarNotes_Agent.sinks.SmartCarInfo_Channel.channels = SmartCarInfo_Channel
-```
-
-sources에서 수집된 데이터를 channels로 옮기기 전에 데이터를 가로채(intercept)서, 데이터 전처리를 수행해야 하기 때문에, 위 주석 부분('# [Interceptor 정보 추가]') 위치에 Interceptor에 대한 구성 정보가 추가된다. 
+sources에서 수집된 데이터를 channels로 옮기기 전에 데이터를 가로채(intercept)서, 데이터 전처리를 수행해야 하기 때문에, 위 주석 부분('# [중단부]Interceptor 설정 정보 추가') 위치에 Interceptor에 대한 구성 정보가 추가된다. 
 Interceptor 중, 수집된 데이터 중, 가비지 데이터(garbage data)로부터 데이터를 필터링 하기 때문에, filterInterceptor로 구성하고, type은 regular expression(정규식)이며, regex에는 데이터에 대응하는 정규식을 작성한다. 아래에서는 숫자 14자리에 대한 정규식을 작성하였다. excludeEvents는 정규식에 의해 필터링된 데이터는 모두 제외시킨다는 구성 정보이다. 위 정보를 업데이트한 구성 파일은 아래와 같다.
 ``` conf
 SeminarNotes_Agent.sources = SmartCarInfo_SpoolSource
@@ -93,6 +70,7 @@ SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.spoolDir = /home/.../specifi
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.deletePolicy = immediate
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.batchSize = 1000
 
+# [중단부]Interceptor 설정 정보 추가
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.type = regex_filter
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.regex = ^\d{14}
 SeminarNotes_Agent.sources.SmartCarInfo_SpoolSource.interceptors.filterInterceptor.excludeEvents = false
