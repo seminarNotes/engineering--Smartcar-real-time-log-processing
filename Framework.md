@@ -296,7 +296,17 @@ Source -> Channel -> Sink
 
 Topic 만들기
 ```
-$ kafka-topics --create --zookeeper server02.hadoop.com:0000 --replication-factor 1 --partitions 1 --topic Name-of-Topic
+$ kafka-topics --create --zookeeper server02.hadoop.com:0000 --replication-factor 1 --partitions 1 --topic [Name-of-Topic]
+```
+
+앞의 Topic을 바라보고 있는 메세지 생산자(Producer) 사용
+```
+$ kafka-console-producer --broker-list server02.hadoop.com:0000 -topic [Name-of-Topic]
+```
+
+producer가 생상한 메세지를 consumer가 수신한다. 이 때, 생상자와 동일한 topic을 바라봐야한다.
+```
+$ kafka-console-consumer --bootstrap-server Server02.hadoop.com:0000 --topic [Name-of-Topic] --partition 0 --from-beginning
 ```
 
 
