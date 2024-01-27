@@ -23,7 +23,7 @@
 |스마트카의 실시간 로그 파일은 비동기 처리로 빠른 수집 처리|플럼에서 수집한 데이터를 카프카 Sink 컴포넌트를 이용해 카프카 Topic에 비동기 전송|
 
 
-
+<!--
 
 #### 2.1. SmartCarInfo Agent 생성하기
 플럼을 통해 데이터를 수집하기 위해 플럼 에이전트를 생성하고 설정해야 한다.
@@ -185,5 +185,4 @@ $ java -cp bigdata.smartcar.loggen-1.0 jar com.wikibook.bigdata.smartcar.loggen.
 [YYYYMMDD], [NumCar]는 입력 변수로, 로그 파일 생성 시, 로그 일자와 차량 대수를 의미한다.
 
 
-
-
+-->
