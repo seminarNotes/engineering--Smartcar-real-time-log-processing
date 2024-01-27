@@ -292,3 +292,15 @@ Source -> Channel -> Sink
 - Topic : Broker에서 데이터의 발행/소비 처리를 위한 중간 저장소
 - Provider : Broker의 특정 Topic에 데이터를 전송(발행)하는 역할로서 애플리케이션에서 카프카 라이브리러를 이용해 구현
 - Consumer : Broker의 특정 Topic에서 데이터를 수신(소비)하는 역할로서 애플리케이션에서 카프카 라이브러리를 이용해 구현
+
+
+Topic 만들기
+```
+$ kafka-topics --create --zookeeper server02.hadoop.com:0000 --replication-factor 1 --partitions 1 --topic Name-of-Topic
+```
+
+
+
+
+
+
