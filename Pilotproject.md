@@ -1,11 +1,13 @@
+본 글에서는 프로젝트에 대한 전체적인 흐름과 결과물에 대해서만 정리할 것이다.
+아래 내용는 프로젝트를 구성하고 수행하는 내용에 대해서만 작성을 하고, 관련된 용어와 프레임워크에 대한 설명은 각각 다른 문서에서 다룰 예정이다.
+특히, 각 프레임워크의 필요한 구성에 대해서는 설명하되, 세부적인 문법에 대해서는 다른 문서에서 다룰 예정이다.
+먼저, 본 프로젝트의 목표는 아래와 같다.
 
 프로젝트의 요구 사항
 - 요구사항1 : 차량의 다양한 장치로부터 발생하는 로그 파일을 수집해서 기능별 상태를 점검한다.
 - 요구사항2 : 운전자의 운행 정보를 담긴 로그를 실시간으로 수집해서 주행패턴을 분석한다.
 
-
-아래 내용는 프로젝트를 구성하고 수행하는 내용에 대해서만 작성을 하고, 관련된 용어와 프레임워크에 대한 설명은 각각 다른 문서에서 다룰 예정이다.
-
+위 요구 사항 중, 수집 단계에 대한 요구사항을 구체화하면, 아래 표와 같다.
 
 1. 수집 요구사항의 구체화
 
@@ -173,27 +175,3 @@ SeminarNotes_Agent.sinks.DriverCarInfo_KafkaSink.channel = DriverCarInfo_Channel
 
 
 
-
-
-
-
-
-아래에서 설명하는 server01과 server02는 직접 linux 서버를 구성한 것을 기준으로 설명한 것으로, 각 프레임워크는 cloudera를 통해 구축하였으며, host의 구성은 아래와 같다.  
-
-|Name|Roles|
-|--|--|
-|server01.hadoop.com|HDFS Balancer|
-|server01.hadoop.com|HDFS DataNode|
-|server01.hadoop.com|HDFS NameNode|
-|server01.hadoop.com|HDFS SecondaryNameNode|
-|server01.hadoop.com|Cloudera Management Service Alert Publisher|
-|server01.hadoop.com|Cloudera Management Service Event Server|
-|server01.hadoop.com|Cloudera Management Service Host Monitor|
-|server01.hadoop.com|Cloudera Management Service Service Monitor|
-|server01.hadoop.com|YARN (MR2 Included) JobHistory Server|
-|server01.hadoop.com|YARN (MR2 Included) ResourceManager|
-|server02.hadoop.com|HDFS DataNode|
-|server02.hadoop.com|YARN (MR2 Included) NodeManager|
-|server02.hadoop.com|ZooKeeper Server|
-
-![host](./images/allhost.png)
