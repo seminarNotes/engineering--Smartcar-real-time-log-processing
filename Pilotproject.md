@@ -137,8 +137,9 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 
 ### 2.3. 느낀점  
 - CLI로 이루어진 프로그램에서 로그를 꼼꼼히 읽어야 한다는 점을 문득 느끼게 되었다.
-- 4번을 통해 성공적으로 해당 단계를 완료하였으며, 중간에 Flume에 대한 로그를 확인하였을 때, 대게 5분 정도 소요되는 작업이 8시간 이상 되어도 동작이 수행되지 않는 트러블 슈팅이 있었다.
-- 해당 트러블 슈팅은 Cloudera에서 모든 Framework를 완전히 종료(정지)하고, Server를 저장하고, 컴퓨터 재부팅 후, 다시 시도하여 해결하였다.
+- 4번을 통해 성공적으로 해당 단계를 완료하였으며, 중간에 Flume에 대한 로그를 확인하였을 때, 대게 5분 정도 소요되는 작업이 아래와 같은 화면의 상태로 8시간 이상 되어도 동작이 수행되지 않는 트러블 슈팅이 있었다. 해당 트러블 슈팅은 Cloudera에서 모든 Framework를 완전히 종료(정지)하고, Server를 저장하고, 컴퓨터 재부팅 후, 다시 시도하여 해결하였다. 정확한 원인을 파악하지 못하였지만, 구성 파일(.conf) 업데이트 후, flume의 재시작 시, 구성이 재대로 반영되지 않은 부분이라 추측하고 있다.
+![pilotproject_plume_operation1](./images/pilotproject_plume_operation_error.png)
+
 
 
 
