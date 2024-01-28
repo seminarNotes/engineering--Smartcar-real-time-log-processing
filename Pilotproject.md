@@ -177,6 +177,14 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 
 ![pilotproject_plume_operation1](./images/pilotproject_workflow_tmp.png)
 
+- 카프카 spout가 카프카에서 데이터를 로드하여, 에스퍼가 적용된 Bolt가 라우팅을 하여, 과속 차량을 판단한다.
+- 과속 차량에 해당하는 경우, 운전자 정보를 레디스 Bolt에 전달하여, 레디스에 저장한다.
+- 카프카로부터 로드한 모든 운전자 정보는 HBase Bolt에 전달되어, HBase에 저장한다.
+
+### 3.2. 결과물
+
+
+
 
 
 
