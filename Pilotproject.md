@@ -113,11 +113,6 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 |적재 및 생성되는 파일은 HDFS의 특징을 고려해야함|플럼의 HdfsSink의 옵션을 파일럿 프로젝트의 HDFS에 최적화하여 설정|
 |적재가 완료된 후에는 원천 파일 삭제|플럼의 Source 컴포넌트 중 SpoolDir의 DeletePolicy 옵션 활용|
 
-
-
-
-
-
 ### 2.2. 결과물
 
 이번 장에서는 빅데이터 대용량 파일 적재에 대한 기본 개념과 적재 수행을 위해서 Hadoop 내 HDFS, Flume, Zookeeper의 기능, 아키텍쳐에 대해 공부하고, 이를 활용하여 데이터 수집 프로세르를 구현하였다.
@@ -140,6 +135,14 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 정상적으로 파일과 데이터가 적재되었음을 확인함으로써, Flume의 이벤트 작동과 적재 기능 테스트를 완료하였다. 이 후, Framework와 서버를 종료하였다.
 ![pilotproject_plume_operation1](./images/pilotproject_plume_operation2.png)
 
+### 2.3. 느낀점  
+- CLI로 이루어진 프로그램에서 로그를 꼼꼼히 읽어야 한다는 점을 문득 느끼게 되었다.
+- 4번을 통해 성공적으로 해당 단계를 완료하였으며, 중간에 Flume에 대한 로그를 확인하였을 때, 대게 5분 정도 소요되는 작업이 8시간 이상 되어도 동작이 수행되지 않는 트러블 슈팅이 있었다.
+- 해당 트러블 슈팅은 Cloudera에서 모든 Framework를 완전히 종료(정지)하고, Server를 저장하고, 컴퓨터 재부팅 후, 다시 시도하여 해결하였다.
+
+
+
+  
 
 
 
