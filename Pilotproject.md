@@ -137,6 +137,8 @@ $ hdfs dfs -ls -R /pilot-pjt/collect/car-batch-log
 # 하나의 로그 파일 데이터 확인
 $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-log.1706410302520.log
 ```
+정상적으로 파일과 데이터가 적재되었음을 확인함으로써, Flume의 이벤트 작동과 적재 기능 테스트를 완료하였다. 이 후, Framework와 서버를 종료하였다.
+![pilotproject_plume_operation1](./images/pilotproject_plume_operation2.png)
 
 
 
