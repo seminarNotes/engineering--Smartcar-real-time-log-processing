@@ -185,6 +185,69 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 
 
 
+### 3.4. 느낀점  
+
+Redis는 Cloudera 환경에서 설치할 수 없어서 서버 환경에서 yum 명령어를 이용해서 직접 설치를 했어야 했다.
+```
+$ yum install -y gcc*
+$ yum install -y tcl
+```
+
+하지만, 쉽게 풀릴 내 하루가 아니기 때문에, 정말 .. 정말 간단한 설치 Command인데 에러가 발생했다.
+```
+[root@server02 ~]# yum install -y gcc*
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Setting up Install Process
+Determining fastest mirrors
+YumRepo Error: All mirror URLs are not using ftp, http[s] or file.
+ Eg. Invalid release/repo/arch combination/
+removing mirrorlist with no valid mirrors: /var/cache/yum/x86_64/6/base/mirrorlist.txt
+Error: Cannot find a valid baseurl for repo: base
+[root@server02 ~]#
+
+[root@server02 ~]# yum install -y tcl
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+https://archive.cloudera.com/cm6/6.3.1/redhat6/yum/repodata/repomd.xml: [Errno 14] PYCURL ERROR 22 - "The requested URL returned error: 404 Not Found"
+Trying other mirror.
+To address this issue please refer to the below knowledge base article
+
+https://access.redhat.com/articles/1320623
+
+If above article doesn't help to resolve this issue please open a ticket with Red Hat Support.
+
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: cloudera-manager. Please verify its path and try again
+```
+
+
+tcl에 대한 정보는 많이 없었지만, gcc 설치에 대한 자료는 많이 찾을 수 있었다. 가장 쉽게 찾을 수 있는 정보에 의하면, linux 비트를 확인하고 아래 command를 입력한다.
+```
+[root@server02 ~]# getconf LONG_BIT
+64
+
+$ echo "https://vault.centos.org/6.10/os/x86_64/" > /var/cache/yum/x86_64/6/base/mirrorlist.txt
+$ echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/extras/mirrorlist.txt
+$ echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/updates/mirrorlist.txt
+```
+
+근데 ? 또 에러가 났다. 역시 대단한 나의 하루다.
+그래서 또.. 한 두시간 정도 해결 방법을 찾기 위해 삽질을 했다.
+
+```
+$ rm /etc/yum.repos.d/cloudera-manager.repo
+$ echo "http://vault.centos.org/6.10/os/x86_64/" > /var/cache/yum/x86_64/6/base/mirrorlist.txt
+$ echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/extras/mirrorlist.txt
+$ echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/updates/mirrorlist.txt
+$ yum install -y gcc* 
+$ yum install -y tcl
+```
+위 해결 방법으로 설치를 완료하였다. 사실 해결방법을 먼저 찾고, 발생되었던 문제점과 해결방법을 이용해 chatGPT에게 원인이 무엇인지 물어보니,
+```
+chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인해 Cloudera 저장소 설정 파일 (/etc/yum.repos.d/cloudera-manager.repo)을 삭제하고 CentOS Vault 저장소를 대체하는 설정을 추가하였습니다. 그런 다음 필요한 패키지를 다시 설치한 것 같습니다.
+```
+요약하면, 원인은 cloudera-manager 저장소의 repomd.xml 파일에 접근할 수 없거나, 저장소 경로가 더 이상 유효하지 않은 부분이었다 그래서, 해결 방법은 해당 저장소 설정을 제거하고, CentOS 6.10의 저장소로 변경하여 YUM이 유효한 저장소에서 패키지를 찾을 수 있도록 command를 입력한 거다. 
+
 
 
 
