@@ -179,7 +179,8 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 ```
 $ tail -f flume-cmf-flume-AGENT-server02.hadoop.com.log
 ```
-![pilotproject_plume_operation1](./images/pilotproject_plume_operation1.png)
+
+<img src="./images/pilotproject_plume_operation1.png" width="400" height="800" alt="pilotproject_plume_operation1">
 
 아래는 Flume을 통해 HDFS에 파일이 적재된 것을 확인하기 위해 hdfs 명령어를 활용하여, 파일과 파일 내 로그 데이터를 확인하였다.
 
@@ -191,15 +192,14 @@ $ hdfs dfs -ls -R /pilot-pjt/collect/car-batch-log
 $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-log.1706410302520.log
 ```
 정상적으로 파일과 데이터가 적재되었음을 확인함으로써, Flume의 이벤트 작동과 적재 기능 테스트를 완료하였다. 이 후, Framework와 서버를 종료하였다.
-![pilotproject_plume_operation1](./images/pilotproject_plume_operation2.png)
+
+<img src="./images/pilotproject_plume_operation2.png" width="400" height="800" alt="pilotproject_plume_operation2">
 
 ### 2.5. Reflections  
 - CLI로 이루어진 프로그램에서 로그를 꼼꼼히 읽어야 한다는 점을 문득 느끼게 되었다.
 - 4번을 통해 성공적으로 해당 단계를 완료하였으며, 중간에 Flume에 대한 로그를 확인하였을 때, 대게 5분 정도 소요되는 작업이 아래와 같은 화면의 상태로 8시간 이상 되어도 동작이 수행되지 않는 트러블 슈팅이 있었다. 해당 트러블 슈팅은 Cloudera에서 모든 Framework를 완전히 종료(정지)하고, Server를 저장하고, 컴퓨터 재부팅 후, 다시 시도하여 해결하였다. 정확한 원인을 파악하지 못하였지만, 구성 파일(.conf) 업데이트 후, flume의 재시작 시, 구성이 재대로 반영되지 않은 부분이라 추측하고 있다.
-![pilotproject_plume_operation1](./images/pilotproject_plume_operation_error.png)
 
-
-
+<img src="./images/pilotproject_plume_operation_error.png" width="400" height="800" alt="pilotproject_plume_operation_error">
 
 ## 3. Big Data Ingestion (Real-time Log/Analysis Loading)   
 ### 3.1. Introduction
@@ -236,7 +236,7 @@ HBase는 카프카에 저장되어 있는 데이터를 스톰을 통해 받아 �
 아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
 |Mark|Component|Role|
 |--|--|--|
-|:one:|**Storm Spout**|Kafka의 Topic으로부터 운전자의 실시간 운행 정보를 수신받아 첫 번째 볼트로 전송, 해당 Bolt에서 모든 운행 정보를 HBase Bolt로 전송하고, 에스퍼의 EPL에서 정의한 조건에 따라 과속한 차량의 데이터는 Redis Bolt로 전|
+|:one:|**Storm Spout**|Kafka의 Topic으로부터 운전자의 실시간 운행 정보를 수신받아 첫 번째 볼트로 전송, 해당 Bolt에서 모든 운행 정보를 HBase Bolt로 전송하고, 에스퍼의 EPL에서 정의한 조건에 따라 과속한 차량의 데이터는 Redis Bolt로 전송|
 |:two:|**HBase**|차량번호, 발생일시를 key로 하여, 모든 스마트카 운전자의 운행 정보를 저장|
 |:three:|**Redis**|현재 날짜를 Key로 하여 과속한 차량의 데이터를 적재, 적재 영속 시간은 5H이며, 이후로 만료 처리가 되어 메모리에서 자동 삭제|
 
