@@ -39,7 +39,7 @@
 
 
 ## 1. Big Data Collection
-### 1.1. Intro.
+### 1.1. Introduction
 데이터 수집은 데이터를 분석하는 과정에서 첫 단계로, 다양한 소스로부터 데이터를 모으는 작업을 의미한다. 이 과정에서 수집할 데이터의 종류와 특성을 정확히 이해하는 것이 중요한데, 일반적으로 데이터는 구조화된 데이터와 비구조화된 데이터, 반구조화된 데이터로 분류된다. 구조화된 데이터는 데이터베이스와 같이 명확한 형식과 순서를 가지며 쉽게 검색, 접근이 가능한 데이터이다. 반면, 비구조화된 데이터는 텍스트 문서, 이미지, 비디오 등과 같이 정해진 형식이나 구조가 없는 데이터이며, 반구조화된 데이터는 이메일, XML 파일 등 구조화되지 않은 데이터에 일정한 구조를 부여한 데이터이다.
 
 |데이터 유형|예시|
@@ -99,7 +99,7 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 
 ## 2. Big Data Ingestion (Loading Large Log Files)
 
-### 2.1. Intro.
+### 2.1. Introduction
 
 데이터를 적재하기 위해서는 원천 데이터의 종류, 수집 주기, 적재 저장소 유형을 모두 고려해야 한다. 각 개념은 아래와 같이 구분된다.
 적재에는 크게 2가지가 있는데, 대용량 파일을 적재하는 것과 실시간 메세지를 적재하는 것이 존재한다. 그리고 전자는 배치성 처리, 후자는 실시간성 처리라고 한다.
@@ -168,7 +168,7 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 
 
 ## 3. Big Data Ingestion (Real-time Log/Analysis Loading)   
-### 3.1. Intro.
+### 3.1. Introduction
 실시간 데이터 처리가 높은 난이도를 갖는 이유는 다음과 같다.
 먼저, 실시간 데이터는 데이터가 빠른 속도로 발생하고, 오랜 시간에 걸쳐 발생하고, 대규모로 발생한다는 점이다.
 둘째, 실시간으로 발생하는 데이터를 반영한 처리하고, 분석하는 아키텍처를 고민해야 한다
@@ -277,7 +277,7 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 
 
 ## 4. Big Data Exploration
-### 4.1. Intro.
+### 4.1. Introduction
 ### 4.2. Requirements Analysis
 |Specific Requirements|List to do|
 |--|--|
@@ -297,7 +297,7 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 
 
 ## 5. Big Data Analysis
-### 5.1. Intro.
+### 5.1. Introduction
 ### 5.2. Requirements Analysis
 |Specific Requirements|List to do|
 |--|--|
