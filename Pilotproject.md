@@ -163,8 +163,13 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 
 ### 2.3. Architecture Analysis
 
-<img src="./images/pilotproject_architecture_Ingestion.png" width="600" height="300" alt="pilotproject_architecture_Ingestion">
+아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
+|Mark|Component|Role|
+|--|--|--|
+|:one:|**HDFS Sink**|Flume이 Source로부터 읽어들인 데이터를 HDFS의 특정 경로에 적  |
+|:two:|**Data Partition**|알맞은 조건에 의해 데이터를 분할(파티션) 저장하면, 하이브에서 데이터를 조회하고 수정할 때, 전체 파일을 스캔하지 않고 파티션 조건에 해당하는 디렉터리만 직접 참조함으로써 효율성 증가|
 
+<img src="./images/pilotproject_architecture_Ingestion.png" width="600" height="300" alt="pilotproject_architecture_Ingestion">
 
 ### 2.4. Execution Results
 
