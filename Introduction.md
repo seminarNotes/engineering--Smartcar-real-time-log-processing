@@ -68,8 +68,9 @@
 
 <img src="./images/introduction_big_data_utilization1.png" width="600" height="300" alt="introduction_big_data_utilization1">
 
-위 그림에서 3V 데이터를 빅데이터 레이크(Big data Lake)에 저장하고,
+위 그림에서 3V 데이터를 빅데이터 레이크(Big data Lake)에 저장하고, 이를 통해 추가적인 처리를 통해 3대 활용 마트를 구성한다. 분석가들은 결국 이 데이터 마트 내 데이터를 활용하여, 인사이트를 얻고, 가치 창출을 하는 업무를 수행한다.
 
+최근 AI의 중요도와 스케일이 커지면서 초기 빅데이터의 분석 영역에 포함되었던 ML/AI이 빅데이터와 분리된 독립적인 환경으로 변하고 있다. 이를 통해, 빅데이터 시스템은 AI 시스템에 학습 데이터를 제공하는 역할을 수행하며, AI에 필요한 대용량 데이터를 저장/탐색/가공/전처리해서 AI 데이터 마트를 구성하는 것도 빅데이터 시스템의 역할이 되었다.
 
 <img src="./images/introduction_big_data_utilization2.png" width="600" height="300" alt="introduction_big_data_utilization2">
 
