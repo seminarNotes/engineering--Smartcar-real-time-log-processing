@@ -13,11 +13,11 @@
 
 위 요구사항을 바탕으로 각 단계별 세부 요구사항과 관련된 인사이트를 도출한다.
 
-![pilotproject_main_requirement](./images/pilotproject_main_requirement.png)
+<img src="./images/pilotproject_main_requirement.png" width="600" height="300" alt="pilotproject_main_requirement">
 
 그리고 위 요구사항을 해결하기 위해 구축할 SW/FW의 구조는 아래와 같다.
 
-![pilotproject_architecture_entire](./images/pilotproject_architecture_entire.png)
+<img src="./images/pilotproject_architecture_entire.png" width="600" height="300" alt="pilotproject_architecture_entire">
 
 프로젝트는 "수집 - 적재 - 처리/탐색 - 분석/운용" 순으로 SW/HW를 구현하고 테스트를 하는 식으로 진행된다.
 
@@ -76,7 +76,8 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 각 프레임워크에 대한 활용 방법을 익히고, 실제 Java에 의한 로그 생성을 작동하여, 각 프레임워크가 데이터를 수집하는지 수집 기능 테스트를 수행하였다.
 
 ### 1.3. Architecture Analysis
-![pilotproject_architecture_collection](./images/pilotproject_architecture_collection.png)
+
+<img src="./images/pilotproject_architecture_collection.png" width="600" height="300" alt="pilotproject_architecture_collection">
 
 ### 1.4. Execution Results
 왼쪽 화면 내, JAVA(.jar)에 의한 로그 시뮬레이터에서 로그파일을 실시간으로 생성하는 것이고, Kafka consumer를 통해 생성된 로그 파일을 수신하는 것 모습이다. 마지막 CLI 화면은 flumer이다.
@@ -133,7 +134,8 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 
 ### 2.3. Architecture Analysis
 
-![pilotproject_architecture_Ingestion](./images/pilotproject_architecture_Ingestion.png)
+<img src="./images/pilotproject_architecture_Ingestion.png" width="600" height="300" alt="pilotproject_architecture_Ingestion">
+
 
 ### 2.4. Execution Results
 
@@ -197,7 +199,7 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 위 세부 요구사항을 수행하기 위해 구축하고자 하는 아키텍처는 아래와 같다.
 
 <!-- ![pilotproject_plume_operation1](./images/pilotproject_workflow_tmp.png) -->
-![pilotproject_architecture_Ingestion_Real-time](./images/pilotproject_architecture_Ingestion_Real-time.png)
+<img src="./images/pilotproject_architecture_Ingestion_Real-time.png" width="600" height="300" alt="pilotproject_architecture_Ingestion_Real-time">
 
 
 - 카프카 spout가 카프카에서 데이터를 로드하여, 에스퍼가 적용된 Bolt가 라우팅을 하여, 과속 차량을 판단한다.
@@ -288,7 +290,7 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 
 ### 4.3. Architecture Analysis
 
-![pilotproject_architecture_exploration](./images/pilotproject_architecture_exploration.png)
+<img src="./images/pilotproject_architecture_exploration.png" width="600" height="300" alt="pilotproject_architecture_exploration">
 
 ### 4.4. Execution Results
 ### 4.5. Reflections
@@ -309,7 +311,7 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 ### 5.3. Architecture Analysis
 
 
-![pilotproject_architecture_analysis](./images/pilotproject_architecture_analysis.png)
+<img src="./images/pilotproject_architecture_analysis.png" width="600" height="300" alt="pilotproject_architecture_analysis">
 
 ### 5.4. Execution Results
 ### 5.5. Reflections
