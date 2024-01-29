@@ -85,13 +85,13 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 ### 1.3. Architecture Analysis
 수집 아키텍처는 원천 데이터의 발생 유형에 따라 2가지로 나뉜다.
 
-|제목1|제목2|제목3|
+|Mark|Component|Role|
 |--|--|--|
-|대용량 파일을 주기적으로 수집|Flume Agent|:one:, :two:, :three:, :four:, :five:|
-|실시간으로 발생하는 로그를 라인 단위로 수집|Kafka Topic|:six:,:seven:, :eight:, :nine:, :zero:|
+|:one:, :two:, :three:, :four:, :five:|Flume Agent|대용량 파일을 주기적으로 수집|
+|:six:,:seven:, :eight:, :nine:, :zero:|Kafka Topic|실시간으로 발생하는 로그를 라인 단위로 수집|
 
 아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
-|번호|분류|내용|
+|Mark|Component|Role|
 |--|--|--|
 |:one:|Data Generator1|**스마트카 상태 정보** : 100대의 스마트카 장치들의 상태 정보를 3초 간격으로 발생|
 |:six:|Data Generator2|**스마트카 운전자 운행정보** : 100명의 스마트카 운전자들의 운행 정보를 실시간으로 발생|
@@ -104,7 +104,8 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 |:five:|-|**Flume Stdout** : Flume의 Logger-Sink를 통해 표준 출력 로그 출력|
 |:zero:|-|**Kafka Topic** : Flume의 Kafka-Sink는 수집된 실시간 로그 임시 적재|
 
-\* :zero:은 아래 그림에서 10번을 나타낸다.
+\* :zero:은 아래 그림에서 10번을 나타낸다.  
+
 <img src="./images/pilotproject_architecture_collection.png" width="600" height="300" alt="pilotproject_architecture_collection">
 
 ### 1.4. Execution Results
