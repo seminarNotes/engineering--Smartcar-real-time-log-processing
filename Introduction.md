@@ -1,5 +1,5 @@
 # Introduction
-최초 작성일 : 2024-01-22  
+최초 작성일 : 2024-01-21
 마지막 수정일 : 2024-01-26
   
 ## 0. Overview
@@ -7,8 +7,6 @@
 이 글에서는 빅데이터에 대한 개념과 구성에 대해서 설명한다. 참고한 도서의 설명과 시각적 자료를 기반으로, 설명이 부족하다고 생각되는 부분을 추가적인 조사를 통해 내용을 구성했다. 또, 추가적인 설명이 요구되는 용어에 대해서는 별도의 문서([Terminology.md](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md))를 통해 정리하였다.
 
 <img src="./images/introduction_big_data_profile.png" width="450" height="225" alt="introduction_big_data_profile">
-
-
 
 ## Table of Contents
 
