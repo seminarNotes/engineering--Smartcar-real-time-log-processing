@@ -88,7 +88,7 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 |Mark|Component|Role|
 |--|--|--|
 |:one:, :two:, :three:, :four:, :five:|Flume Agent|대용량 파일을 주기적으로 수집|
-|:six:,:seven:, :eight:, :nine:, :zero:|Kafka Topic|실시간으로 발생하는 로그를 라인 단위로 수집|
+|:six:, :seven:, :eight:, :nine:, :zero:|Kafka Topic|실시간으로 발생하는 로그를 라인 단위로 수집|
 
 아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
 |Mark|Component|Role|
