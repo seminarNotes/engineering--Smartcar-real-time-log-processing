@@ -237,19 +237,19 @@ R&R 혹은 Role and Responsibilities는 역할과 책임를 의미한다. 다시
 ### 8.2.1. Apache Knox
 아파치 녹스(Apache Knox)는 네트워크상의 DMZ에 위치시킴으로써 외부 클라이언트가 하둡 에코시스템에 직접 접근하는 것을 막고, 항상 녹스를 거쳐 통신하게 하는 중간 게이트웨이 역할로 주로 사용된다. 이 때, 들어온 요청에 대한 접근 인증을 LDAP(경량 디렉터리 액세스 프로토콜)와 KDC(Kerberos Key Distribution Center)를 통해 제공 받을 수 있으며, 아파치 녹스는 주로 외부와의 통신에서 보안과 접근 제어를 강화하기 위해 사용되고, 클러스터 내부의 다양한 서비스에 대한 통합된 보안 및 인증을 제공한다.
 
-<img src="./images/introduction_big_data_apache_knox.png" width="600" height="300" alt="introduction_big_data_apache_knox">
+<img src="./images/introduction_big_data_apache_knox.png" width="400" height="200" alt="introduction_big_data_apache_knox">
 
 ### 8.2.2. Apache Sentry
 아파치 센트리(Apache Sentry)는 하둡 파일 시스템에 상세한 접근 제어가 필요할 때 사용한다. 하둡 데이터에 접근하려는 클라이언트는 센트리 에이전트를 반드시 설치해야 하며, 센트리 에이전트가 중앙에 있는 센트리 서버와 통신하면서 접근 권한을 획득하는 방식을 채택한다 또한, 접근 이력을 관리하여 감사 로그를 편리하게 조회할 수 있기 때문에 데이터 접근에 대한 추적과 감사를 할 수 있다.
 
-<img src="./images/introduction_big_data_apache_sentry.png" width="600" height="300" alt="introduction_big_data_apache_sentry">
+<img src="./images/introduction_big_data_apache_sentry.png" width="400" height="200" alt="introduction_big_data_apache_sentry">
 
 ### 8.2.3. Apache Ranger
 아파치 레인저 (Apache Ranger)는 센트리와 유사한 아키텍처 역할을 수행한다. 레인저는 허튼웍스에서 지원하며, 센트리는 클라우데라에서 지원하고 있으며, 레인저가 지원하는 에코시스템이 많아 범용성이 더 높은 편이다. 레인저를 사용할 경우 다른 서비스와 통합할 수 있으며, 플러그인을 사용하여 레인저 서버와 통신하고, 센트리와 마찬가지로 접근 이력을 관리하는 감시 로그 기능이 있다.
 
-<img src="./images/introduction_big_data_apache_range.png" width="600" height="300" alt="introduction_big_data_apache_range">
+<img src="./images/introduction_big_data_apache_range.png" width="400" height="200" alt="introduction_big_data_apache_range">
 
 ### 8.2.4. Kerberos
 케베로스(Kerberos)는 KDC 시스템으로 불리며, 빅데이터 외에도 이미 다양한 분야에서 활용되고 있는 범용화된 인증 시스템이다. 이 시스템은 크게 AS(인증 서버)와 TGS(티켓 발행 서버)로 구성된다. 하둡 파일 시스템에 접근하려는 클라이언트 에코시스템은 AS(인증 서버)를 통해 최초 인증을 수행하고, TGS(티켓 발행 서버)로부터 하둡 파일 시스템에 접근을 허용하는 티켓을 발행받는다. 이후 유효한 티켓을 사용하여 하둡 파일 시스템에 인증 없이 접근할 수 있어 편의성을 제공한다.
 
-<img src="./images/introduction_big_datad_kerberos.png" width="600" height="300" alt="introduction_big_datad_kerberos">
+<img src="./images/introduction_big_datad_kerberos.png" width="400" height="200" alt="introduction_big_datad_kerberos">
