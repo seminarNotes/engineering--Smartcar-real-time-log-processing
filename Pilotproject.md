@@ -83,7 +83,28 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 각 프레임워크에 대한 활용 방법을 익히고, 실제 Java에 의한 로그 생성을 작동하여, 각 프레임워크가 데이터를 수집하는지 수집 기능 테스트를 수행하였다.
 
 ### 1.3. Architecture Analysis
+수집 아키텍처는 원천 데이터의 발생 유형에 따라 2가지로 나뉜다.
 
+|제목1|제목2|제목3|
+|--|--|--|
+|대용량 파일을 주기적으로 수집|Flume Agent|:one:, :two:, :three:, :four:, :five:|
+|실시간으로 발생하는 로그를 라인 단위로 수집|Kafka Topic|:six:,:seven:, :eight:, :nine:, :zero:|
+
+아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
+|번호|분류|내용|
+|--|--|--|
+|:one:|Data Generator1|**스마트카 상태 정보** : 100대의 스마트카 장치들의 상태 정보를 3초 간격으로 발생|
+|:six:|Data Generator2|**스마트카 운전자 운행정보** : 100명의 스마트카 운전자들의 운행 정보를 실시간으로 발생|
+|:two:|Flume Agent1|**SpoolDir Source** : 지정된 디렉터리를 모니터링하다가 정의된 로그 파일 발생 시, 해당 파일의 내용을 읽고 수집하는 기능|
+|:three:|Flume Agent1|**Memory Channel** : SpoolDir Source로부터 수집된 데이터를 메모리 Channel에 중간 적재하며, 버퍼링 기능과 Sink와 연결되어 트랜잭션 처리를 제공|
+|:four:|Flume Agent1|**Logger Sink** : Channel로부터 읽어들인 데이터를 Flume의 표준 로그 파일로 출력|
+|:seven:|Flume Agent2|**Exce-Tail Source** : 로그가 쌓이고 있는 파일에 Tail 파이프라인을 이용해서 실시간으로 데이터 수집|
+|:eight:|Flume Agent2|**Memory Channel** : Exce-Tail Source로부터 수집된 데이터를 메모리 Channel에 버퍼링 처리를 하며 임시 적재|
+|:nine:|Flume Agent2|**Kafka Sink** : Channel로부터 읽어들인 데이터를 Kafka Broker의 특정 토픽에 비동기식 방식으로 전송(Provider)|
+|:five:|-|**Flume Stdout** : Flume의 Logger-Sink를 통해 표준 출력 로그 출력|
+|:zero:|-|**Kafka Topic** : Flume의 Kafka-Sink는 수집된 실시간 로그 임시 적재|
+
+\* :zero:은 아래 그림에서 10번을 나타낸다.
 <img src="./images/pilotproject_architecture_collection.png" width="600" height="300" alt="pilotproject_architecture_collection">
 
 ### 1.4. Execution Results
