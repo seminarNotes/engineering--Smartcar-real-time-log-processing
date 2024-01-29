@@ -180,7 +180,8 @@ Agent에 대한 세부적인 내용도 중요한 부분이긴 하지만, 프로�
 $ tail -f flume-cmf-flume-AGENT-server02.hadoop.com.log
 ```
 
-<img src="./images/pilotproject_plume_operation1.png" width="400" height="800" alt="pilotproject_plume_operation1">
+![pilotproject_plume_operation1](./images/pilotproject_plume_operation1.png)
+
 
 아래는 Flume을 통해 HDFS에 파일이 적재된 것을 확인하기 위해 hdfs 명령어를 활용하여, 파일과 파일 내 로그 데이터를 확인하였다.
 
@@ -193,13 +194,13 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 ```
 정상적으로 파일과 데이터가 적재되었음을 확인함으로써, Flume의 이벤트 작동과 적재 기능 테스트를 완료하였다. 이 후, Framework와 서버를 종료하였다.
 
-<img src="./images/pilotproject_plume_operation2.png" width="400" height="800" alt="pilotproject_plume_operation2">
+![pilotproject_plume_operation2](./images/pilotproject_plume_operation2.png)
 
 ### 2.5. Reflections  
 - CLI로 이루어진 프로그램에서 로그를 꼼꼼히 읽어야 한다는 점을 문득 느끼게 되었다.
 - 4번을 통해 성공적으로 해당 단계를 완료하였으며, 중간에 Flume에 대한 로그를 확인하였을 때, 대게 5분 정도 소요되는 작업이 아래와 같은 화면의 상태로 8시간 이상 되어도 동작이 수행되지 않는 트러블 슈팅이 있었다. 해당 트러블 슈팅은 Cloudera에서 모든 Framework를 완전히 종료(정지)하고, Server를 저장하고, 컴퓨터 재부팅 후, 다시 시도하여 해결하였다. 정확한 원인을 파악하지 못하였지만, 구성 파일(.conf) 업데이트 후, flume의 재시작 시, 구성이 재대로 반영되지 않은 부분이라 추측하고 있다.
 
-<img src="./images/pilotproject_plume_operation_error.png" width="400" height="800" alt="pilotproject_plume_operation_error">
+![pilotproject_plume_operation_error](./images/pilotproject_plume_operation_error.png)
 
 ## 3. Big Data Ingestion (Real-time Log/Analysis Loading)   
 ### 3.1. Introduction
