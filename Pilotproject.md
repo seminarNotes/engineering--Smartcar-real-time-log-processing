@@ -230,15 +230,25 @@ $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20240128/car-batch-lo
 |레디스에 적재한 데이터는 저장소의 공간을 효율적으로 사용하기 위해 1주일이 경과하면 영구적으로 삭제한다|레디스 클라이언트 라이브러리인 제디스(jedis) 클라이언트를 이용해 데이터 적재 시 만료(Expire) 시간을 설정해 자동으로 영구 삭제 처리|
 
 ### 3.3. Architecture Analysis
-위 세부 요구사항을 수행하기 위해 구축하고자 하는 아키텍처는 아래와 같다.
 
-<!-- ![pilotproject_plume_operation1](./images/pilotproject_workflow_tmp.png) -->
-<img src="./images/pilotproject_architecture_Ingestion_Real-time.png" width="600" height="300" alt="pilotproject_architecture_Ingestion_Real-time">
+HBase는 카프카에 저장되어 있는 데이터를 스톰을 통해 받아 모두 저장을하고, Redis는 운전자의 특정 패턴을 감지한 이벤트 결과(과속한 운전자 정보)만 저장한다. Storm은 스마트카 운전자의 실시간 운행 정보를 대상으로 데이터 라우팅과 스트리밍 처리에 활용되며, 마지막, 에스퍼는 운전자의 운행 데이터를 실시간으로 분석하기 위해 에스퍼 EPL를 이용한다. 이 때, 에스퍼의 EPL은 정의된 룰에 의해 이벤트롤 감지하여, 감지 즉시 레디스에 적재하여 과속한 차량 데이터만 별도 관리할 수 있게 한다.
 
+아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
+|Mark|Component|Role|
+|--|--|--|
+|:one:|**Storm Spout**|Kafka의 Topic으로부터 운전자의 실시간 운행 정보를 수신받아 첫 번째 볼트로 전송, 해당 Bolt에서 모든 운행 정보를 HBase Bolt로 전송하고, 에스퍼의 EPL에서 정의한 조건에 따라 과속한 차량의 데이터는 Redis Bolt로 전|
+|:two:|**HBase**|차량번호, 발생일시를 key로 하여, 모든 스마트카 운전자의 운행 정보를 저장|
+|:three:|**Redis**|현재 날짜를 Key로 하여 과속한 차량의 데이터를 적재, 적재 영속 시간은 5H이며, 이후로 만료 처리가 되어 메모리에서 자동 삭제|
 
+<!-- ![pilotproject_plume_operation1](./images/pilotproject_workflow_tmp.png)
 - 카프카 spout가 카프카에서 데이터를 로드하여, 에스퍼가 적용된 Bolt가 라우팅을 하여, 과속 차량을 판단한다.
 - 과속 차량에 해당하는 경우, 운전자 정보를 레디스 Bolt에 전달하여, 레디스에 저장한다.
 - 카프카로부터 로드한 모든 운전자 정보는 HBase Bolt에 전달되어, HBase에 저장한다.
+-->
+<img src="./images/pilotproject_architecture_Ingestion_Real-time.png" width="600" height="300" alt="pilotproject_architecture_Ingestion_Real-time">
+
+
+
 
 ### 3.4. Execution Results
 
