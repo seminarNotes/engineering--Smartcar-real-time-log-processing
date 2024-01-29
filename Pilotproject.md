@@ -335,6 +335,17 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 
 ### 4.3. Architecture Analysis
 
+Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부닐, 변환, 정제 등의 작업을 수행해 스마트카 Data Warehouse를 구성하고, 다시 Data Warehouse에서 추가적인 탐색과 분석을 진행하여 스마트카 데이터에 대한 DataMart를 생성한다. Spark는 고성능 인메모리 분석 도구로, Spark Shell에서 Spark-SQL API를 이용해 추가로 적재될 "스마트카 마스터" 데이터를 주회 및 정제하는 역할을 수행한다. Oozie는 비순환 그래프(DAG)을 이용한 워크폴로를 관리하는 도구로, Oozie를 통해 후처리 작업을 정의하고 프로세스화한다. 적재된 데이터를 External - Managed - Mart로 이동시키기 위해 Hive QL를 정의하고, 정해진 시간에 수행되도록 스케줄을 생성한다. Hue는 HDFS, HBase, Hive, Impala를 편리하게 사용하게 웹 에디터를 제공한다. 이를 통해 "스마트 상태 데이터", "스마트카 운전자의 운행 데이터"의 직관성을 높인다.
+
+아래 아키텍처의 각 단계는 아래와 같은 의미를 갖는다.
+|Mark|Component|Role|
+|--|--|--|
+|:one:|**Hive Editor**|Externel에 적재된 데이터를 SQL과 유사한 방식으로 조회|
+|:one:|**Hive Handler**|HBase에 적재된 데이터를 탐색|
+|:two:|**-**|External과 HBase에 적재된 데이터를 작업일자 기준으로 후처리 작업, Hive의 Managed 영역에는 스마트카로부터 발생한 생성일자를 기준으로 2차 적재, 필요 시 데이터를 필터링 및 클린징 처리하거나 통합, 분리 작업을 수행|
+|:three:|**-**|Managed에 만들어진 데이터는 탐색과 분석에 활용, External 영역보다 데이터가 구조화되고, 정제되면서 정형 데이터로 전환|
+|:four:|**-**|데이터 전문가에 의한 데이터 분석 및 인사이트 도출|
+
 <img src="./images/pilotproject_architecture_exploration.png" width="600" height="300" alt="pilotproject_architecture_exploration">
 
 ### 4.4. Execution Results
