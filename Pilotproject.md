@@ -7,10 +7,11 @@
 본 문서에서는 프로젝트의 요구사항을 면밀히 분석하고, 이를 기반으로 단계별로 세부 요구사항을 상세하게 도출하였다. 또한, 분석된 요구사항에 적합한 아키텍처를 설계하고, 이 아키텍처를 바탕으로 소프트웨어(SW) 및 프레임워크(FW)를 구축하며, 구축된 시스템의 성능을 단계별로 단위 테스트하는 과정을 체계적으로 정리하였다. 프로젝트 진행 과정에서 깨달은 중요한 사실은, SW/FW가 기능적 요구사항을 충족하는 것이 매우 중요하지만, 이 과정에서 사용자의 필요와 경험을 소홀히 해서는 안 된다는 점이다. 그래서 이 문서에서는 프로젝트 요구사항, 아키텍처의 전반적인 구조를 중점적으로 다루고, SW/FW는 기능과 역할, 실행 결과물에 대해서만 간략히 언급합니다. 이를 통해, 본 문서는 전체 프로젝트의 구조와 흐름을 명확히 기술하고, SW/FW의 구체적인 기술적 세부사항은 별도의 문서에서 상세히 다루도록 한다.
 
 
-
-|[Introduction](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 내용|김강원. "실무로 배우는 빅데이터 기술." 위키북스, 2022|
-|[Framework](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|프레임워크에 대한 내용|별도 자료 조사|
-|[Terminology](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용|별도 자료 조사|
+|Title|Desciption|
+|--|--|
+|[Introduction](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Introduction.md)|빅데이터에 대한 내용|
+|[Framework](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Framework.md)|프레임워크에 대한 내용|
+|[Terminology](https://github.com/seminarNotes/engineering--Smartcar-real-time-log-processing/blob/main/Terminology.md)|용어에 대한 내용|
 
 프로젝트의 주요 목표는 운전자(고객)에게 편의성과 안전성을 제공하는 스마트카 서비스를 개발하기 위해, 수백 대의 IoT 장치로부터 발생하는 스마트카 데이터와 차량 상태 정보를 수집하고 처리하는 빅데이터 시스템을 구축하는 것이다. 구체적으로, 프로젝트는 다음과 같은 요구사항을 해결한다.
  
