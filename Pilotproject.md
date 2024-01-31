@@ -346,12 +346,12 @@ Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부
 <img src="./images/pilotproject_architecture_exploration.png" width="600" height="300" alt="pilotproject_architecture_exploration">
 
 ### 4.4. Execution Results  
-![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.png)
+![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.gif)
 
-![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.png)
+![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.gif)
 
 
-![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.png)
+![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.gif)
 
 
 ### 4.5. Reflections
