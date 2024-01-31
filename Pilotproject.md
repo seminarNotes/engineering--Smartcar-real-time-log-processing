@@ -318,9 +318,6 @@ chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인
 ```
 요약하면, 원인은 cloudera-manager 저장소의 repomd.xml 파일에 접근할 수 없거나, 저장소 경로가 더 이상 유효하지 않은 부분이었다 그래서, 해결 방법은 해당 저장소 설정을 제거하고, CentOS 6.10의 저장소로 변경하여 YUM이 유효한 저장소에서 패키지를 찾을 수 있도록 command를 입력한 거다. 
 
-
-
-
 ## 4. Big Data Exploration
 ### 4.1. Introduction
 ### 4.2. Requirements Analysis
@@ -348,7 +345,15 @@ Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부
 
 <img src="./images/pilotproject_architecture_exploration.png" width="600" height="300" alt="pilotproject_architecture_exploration">
 
-### 4.4. Execution Results
+### 4.4. Execution Results  
+![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.png)
+
+![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.png)
+
+
+![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.png)
+
+
 ### 4.5. Reflections
 - storm topology를 설치하는 과정에서 에러가 발생하였다. 해당 에러를 하루 정도 원인을 분석한 결과 storm을 이용한 명령어에는 오타가 없었으나, 설치과정에서 storm의 환경변수에 오타가 있었던 것을 확인하여 수정하였다.
 - bolt를 적용한 topology를 생성하고, 시뮬레이터를 작동시킨 후, HBase에 접속하여 테이블에 적재된 데이터를 확인하였는데, 정상적으로 데이터가 저장되어 있지 않았다. 테이블 리스트를 조회하니, 잘못된 이름의 테이블이 조회되었다. 현재 위 개발과정 중 테이블 이름이 정의된 부분을 찾고 있는 상황이다.
