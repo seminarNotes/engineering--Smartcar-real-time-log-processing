@@ -267,13 +267,14 @@ HBase와 Storm은 웹 브라우저 사용자 인터페이스(UI)를 지원한다
 
 ### 3.5. Reflections  
 
-Redis는 Cloudera 환경에서 설치할 수 없어서 서버 환경에서 yum 명령어를 이용해서 직접 설치를 했어야 했다.
+- Redis 설치 간 에러 발생
+Redis는 Cloudera 환경에서 설치할 수 없어서 서버 환경에서 yum 명령어를 이용해서 직접 설치를 해야한다.
 ```
 $ yum install -y gcc*
 $ yum install -y tcl
 ```
 
-하지만, 쉽게 풀릴 내 하루가 아니기 때문에, 정말 .. 정말 간단한 설치 Command인데 에러가 발생했다.
+위 install 명령어에 의해 정상적으로 설치되어야 하지만, 아래와 같은 에러 메세지가 출력되었다.
 ```
 [root@server02 ~]# yum install -y gcc*
 Loaded plugins: fastestmirror, refresh-packagekit, security
@@ -300,8 +301,7 @@ If above article doesn't help to resolve this issue please open a ticket with Re
 Error: Cannot retrieve repository metadata (repomd.xml) for repository: cloudera-manager. Please verify its path and try again
 ```
 
-
-tcl에 대한 정보는 많이 없었지만, gcc 설치에 대한 자료는 많이 찾을 수 있었다. 가장 쉽게 찾을 수 있는 정보에 의하면, linux 비트를 확인하고 아래 command를 입력한다.
+위 에러 메세지에서 mirrorfile과 관련된 에러를 언급하고 있어, 나는 해당 에러에 대한 해결 방법을 찾기 위해 꽤 오랜 시간 동안 구글링을 하였다. tcl에 대한 정보는 많이 없었지만, gcc 설치에 대한 자료는 많이 찾을 수 있었다. 가장 흔하게 찾을 수 있는 정보에 의하면, 해결 방법은 설치되어 있는 linux 비트를 확인하고, 그에 맞게 아래 command를 입력하는 것이었다.
 ```
 [root@server02 ~]# getconf LONG_BIT
 64
@@ -311,8 +311,7 @@ $ echo "http://vault.centos.org/6.10/extras/x86_64/" > /var/cache/yum/x86_64/6/e
 $ echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/updates/mirrorlist.txt
 ```
 
-근데 ? 또 에러가 났다. 역시 대단한 나의 하루다.
-그래서 또.. 한 두시간 정도 해결 방법을 찾기 위해 삽질을 했다.
+하지만, 동일한 에러를 다시 겪었고, 약 6시간 동안 해결 방법을 조사하고, 아래와 같은 추가적인 command로 설치를 완료하였다.
 
 ```
 $ rm /etc/yum.repos.d/cloudera-manager.repo
@@ -322,11 +321,9 @@ $ echo "http://vault.centos.org/6.10/updates/x86_64/" > /var/cache/yum/x86_64/6/
 $ yum install -y gcc* 
 $ yum install -y tcl
 ```
-위 해결 방법으로 설치를 완료하였다. 사실 해결방법을 먼저 찾고, 발생되었던 문제점과 해결방법을 이용해 chatGPT에게 원인이 무엇인지 물어보니,
-```
-chatGPT : 해결 방법으로 아래의 단계를 수행하였는데, 이로 인해 Cloudera 저장소 설정 파일 (/etc/yum.repos.d/cloudera-manager.repo)을 삭제하고 CentOS Vault 저장소를 대체하는 설정을 추가하였습니다. 그런 다음 필요한 패키지를 다시 설치한 것 같습니다.
-```
-요약하면, 원인은 cloudera-manager 저장소의 repomd.xml 파일에 접근할 수 없거나, 저장소 경로가 더 이상 유효하지 않은 부분이었다 그래서, 해결 방법은 해당 저장소 설정을 제거하고, CentOS 6.10의 저장소로 변경하여 YUM이 유효한 저장소에서 패키지를 찾을 수 있도록 command를 입력한 거다. 
+설치 에러의 원인은 cloudera-manager 저장소의 repomd.xml 파일에 접근할 수 없거나, 저장소 경로가 더 이상 유효하지 않은 부분이었다 그래서, 해결 방법으로 해당 저장소 설정을 제거하고, CentOS 6.10의 저장소로 변경하여 YUM이 유효한 저장소에서 패키지를 찾을 수 있도록 command를 입력하였다. 아직까지 CLI가 익숙하지 않아, 출력되는 에러 메세지를 이해하고, 조치하는 능력이 스스로 많이 부족하다고 생각한다. 
+
+- HBase 내 Table 명칭 에러  
 
 ## 4. Big Data Exploration
 ### 4.1. Introduction
