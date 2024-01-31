@@ -253,6 +253,19 @@ HBase는 카프카에 저장되어 있는 데이터를 스톰을 통해 받아 �
 
 ### 3.4. Execution Results
 
+아래는 hbase에 저장된 실시간 로그 데이터를 조회하는 프롬프트의 모습이다. 로그 시뮬레이터를 통해 생성되는 실시간 로그 데이터는 Flume 에이전트를 통해 Kafka 토픽으로 전송되고, 그 후 Kafka 스파우트와 HBase 볼트를 사용하여 이 데이터를 HBase 내의 "DriverCarInfo" 테이블에 저장한다. 이후에도 로그가 계속 발생하기 때문에, 나중에 쿼리를 수행하더라도 누적된 데이터를 검색할 수 있다. 이 과정에서 모든 데이터는 HBase에 Flume을 통해 수집되며 하둡에 보관된다.
+
+![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.gif)
+
+아래는 redis 저장된 실시간 로그 데이터를 조회하는 프롬프트의 모습이다. 아래 그림은 Redis에 저장된 데이터를 출력하는 프롬프트를 나타내고 있다. 로그 시뮬레이터에서 발생한 로그 데이터는 Flume 에이전트를 통해 Kafka 토픽으로 전송되며, 그 중에서도 과속한 운전자에 관한 정보만을 추출하여 Redis로 전송한다. 이 작업은 Kafka 스파우트와 Esper 볼트를 활용하여 수행된다. Redis 볼트는 Java 클래스로 구현되어 있으며, 데이터를 읽어서 특정 조건인 과속에 해당하는 데이터만을 Redis에 저장한다. 이렇게 저장된 데이터는 업무 시스템, 예를 들어 과속 경고 알림 서비스 등에 활용될 수 있다.
+
+![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.gif)
+
+
+아래는 web 브라우저이다.
+
+![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.gif)
+
 
 
 ### 3.5. Reflections  
@@ -347,18 +360,6 @@ Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부
 
 ### 4.4. Execution Results  
 
-아래는 데이터가 hbase에 저장되는 모습이다.
-
-![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.gif)
-
-아래는 데이터 redis에 저장되는 모습이다.
-
-![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.gif)
-
-
-아래는 web 브라우저이다.
-
-![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.gif)
 
 
 ### 4.5. Reflections
