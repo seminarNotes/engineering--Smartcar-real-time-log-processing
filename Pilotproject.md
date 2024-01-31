@@ -346,10 +346,17 @@ Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부
 <img src="./images/pilotproject_architecture_exploration.png" width="600" height="300" alt="pilotproject_architecture_exploration">
 
 ### 4.4. Execution Results  
+
+아래는 데이터가 hbase에 저장되는 모습이다.
+
 ![pilotproject_savedata_hbase](./images/pilotproject_savedata_hbase.gif)
+
+아래는 데이터 redis에 저장되는 모습이다.
 
 ![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.gif)
 
+
+아래는 web 브라우저이다.
 
 ![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.gif)
 
