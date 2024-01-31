@@ -261,12 +261,9 @@ HBase는 카프카에 저장되어 있는 데이터를 스톰을 통해 받아 �
 
 ![pilotproject_savedata_redis](./images/pilotproject_savedata_redis.gif)
 
-
-아래는 web 브라우저이다.
+HBase와 Storm은 웹 브라우저 사용자 인터페이스(UI)를 지원한다. 사용자는 이 UI를 통해 HBase에 저장된 데이터를 확인하고, Storm 내의 topology를 확인할 수 있다. 아래 영상에서는 먼저, HBase 내의 테이블에 저장된 데이터를 확인하고, Storm UI로 이동하여 topology 시각화를 통해 데이터 처리량과 각 객체 간의 관계를 확인하고 있다. 또한 각 bolt에 대한 초당 처리량과 같은 성능적인 측면도 확인할 수 있다.
 
 ![pilotproject_web_hbase_storm](./images/pilotproject_web_hbase_storm.gif)
-
-
 
 ### 3.5. Reflections  
 
