@@ -1,6 +1,26 @@
 # Pilotproject
 최초 작성일 : 2024-01-21  
 마지막 수정일 : 2024-02-02
+
+Dependency :
+|SW/FW|Version|
+|--|--|
+|Apache Flume|1.9.0|
+|Apache Hadoop|3.0.0|
+|Apache HBase|2.1.4|
+|Apache Hive|2.1.1|
+|Hue|4.3.0|
+|Apache Impala|3.2.0|
+|JAVA|1.8.0_181|
+|Apache Kafka|2.2.1|
+|Apache Oozie|5.1.0|
+|Python|2.6.6|
+|Redis|5.0.7|
+|Apache Spark|2.4.0|
+|Apache Sqoop|1.4.7|
+|Apache Storm|1.2.3|
+|Apache Zookeeper|3.4.5|
+
   
 ## 0. Overview
 
