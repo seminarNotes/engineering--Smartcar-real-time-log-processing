@@ -375,6 +375,10 @@ Hive QL(하이브쿼리)로 스마트카 데이터에 대한 조회, 결합, 부
 ### 4.4. Execution Results  
 
 
+![pilotproject_workflow_oozie](./images/pilotproject_workflow_oozie.gif)
+
+
+
 
 ### 4.5. Reflections
 - storm topology를 설치하는 과정에서 에러가 발생하였다. 해당 에러를 하루 정도 원인을 분석한 결과 storm을 이용한 명령어에는 오타가 없었으나, 설치과정에서 storm의 환경변수에 오타가 있었던 것을 확인하여 수정하였다.
